@@ -33,6 +33,23 @@ pod.validate();
 
 See [examples](examples) folder for more examples.
 
+## Usage with zod
+
+```js
+import { iPodSchema } from "kubernetes-models/v1/Pod.schema";
+
+const pod: unknown = {
+  apiVersion: "v1",
+  kind: "Pod",
+  spec: {
+    containers: []
+  }
+};
+
+// Validate against zod schema
+iPodSchema.parse(pod);
+```
+
 ## Packages
 
 ### Models
