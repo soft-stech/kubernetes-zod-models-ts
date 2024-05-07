@@ -43,9 +43,12 @@
     "@kubernetes-models/generate": "workspace:^",
     "@kubernetes-models/read-input": "workspace:^",
     "@kubernetes-models/string-util": "workspace:^",
+    "case": "^1.6.3",
     "lodash": "^4.17.21",
+    "ts-to-zod": "^3.8.3",
     "tslib": "^2.4.0",
-    "yargs": "^17.6.0"
+    "yargs": "^17.6.0",
+    "zod": "^3.23.6"
   },
   "devDependencies": {
     "@types/lodash": "^4.14.186",

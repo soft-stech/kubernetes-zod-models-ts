@@ -68,11 +68,13 @@ function _generateInterface(
         }
 
         if (additionalProperties) {
-          output += `[key: string]: ${_generateInterface(
+          output += `Record<string, ${_generateInterface(
             additionalProperties,
             options,
             [...parentKeys, WILDCARD_FIELD]
-          )};\n`;
+          )}>\n`;
+
+          return output;
         }
 
         return "{\n" + indentString(output, 2) + "}";

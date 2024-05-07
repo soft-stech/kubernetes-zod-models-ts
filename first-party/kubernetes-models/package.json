@@ -33,7 +33,9 @@
     "@kubernetes-models/apimachinery": "workspace:^",
     "@kubernetes-models/base": "workspace:^",
     "@kubernetes-models/validate": "workspace:^",
-    "tslib": "^2.4.0"
+    "ts-to-zod": "^3.8.3",
+    "tslib": "^2.4.0",
+    "zod": "^3.23.6"
   },
   "devDependencies": {
     "@kubernetes-models/openapi-generate": "workspace:^",

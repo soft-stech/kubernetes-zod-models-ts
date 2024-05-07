@@ -9,6 +9,7 @@ import {
 import generateDefinitions from "./generators/definition";
 import generateSchemas from "./generators/schema";
 import generateAliases from "./generators/alias";
+import generateZodSchemas from "./generators/zod";
 import { uniq } from "lodash";
 import { buildContext, ContextOptions } from "./context";
 
@@ -77,7 +78,8 @@ export async function generate({
   const generator = composeGenerators([
     generateDefinitions(ctx),
     generateSchemas(ctx),
-    generateAliases(ctx)
+    generateAliases(ctx),
+    generateZodSchemas(ctx)
   ]);
   const files = await generator(definitions);
 
