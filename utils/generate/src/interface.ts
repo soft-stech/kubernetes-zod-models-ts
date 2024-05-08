@@ -89,6 +89,9 @@ function _generateInterface(
           case "int-or-string":
             return "string | number";
 
+          case "date-time":
+            return "string | null";
+
           default:
             return "string";
         }
