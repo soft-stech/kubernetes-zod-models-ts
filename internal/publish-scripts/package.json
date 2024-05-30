@@ -1,5 +1,5 @@
 {
-  "name": "@kubernetes-models/publish-scripts",
+  "name": "@soft-stech/publish-scripts",
   "version": "1.2.0",
   "private": true,
   "bin": {

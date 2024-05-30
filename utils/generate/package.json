@@ -1,5 +1,5 @@
 {
-  "name": "@kubernetes-models/generate",
+  "name": "@soft-stech/generate",
   "version": "2.3.1",
   "description": "Type declarations and utilities for Kubernetes model generation.",
   "repository": {
@@ -36,7 +36,7 @@
     "node": ">=14"
   },
   "dependencies": {
-    "@kubernetes-models/string-util": "workspace:^",
+    "@soft-stech/string-util": "workspace:^",
     "ajv": "^8.12.0",
     "fs-extra": "^10.1.0",
     "indent-string": "^4.0.0",

@@ -30,17 +30,17 @@
     "node": ">=14"
   },
   "dependencies": {
-    "@kubernetes-models/apimachinery": "workspace:^",
-    "@kubernetes-models/base": "workspace:^",
-    "@kubernetes-models/validate": "workspace:^",
+    "@soft-stech/apimachinery": "workspace:^",
+    "@soft-stech/base": "workspace:^",
+    "@soft-stech/validate": "workspace:^",
     "ts-to-zod": "^3.8.3",
     "tslib": "^2.4.0",
     "zod": "^3.23.6"
   },
   "devDependencies": {
-    "@kubernetes-models/openapi-generate": "workspace:^",
-    "@kubernetes-models/publish-scripts": "workspace:^",
-    "@kubernetes-models/read-input": "workspace:^",
+    "@soft-stech/openapi-generate": "workspace:^",
+    "@soft-stech/publish-scripts": "workspace:^",
+    "@soft-stech/read-input": "workspace:^",
     "@types/node": "^18.7.23",
     "openapi-types": "^12.0.2",
     "ts-node": "^10.9.1",

@@ -1,5 +1,5 @@
 {
-  "name": "@kubernetes-models/apimachinery",
+  "name": "@soft-stech/apimachinery",
   "version": "1.2.1",
   "description": "Types for Kubernetes API objects",
   "repository": {
@@ -31,15 +31,15 @@
     "node": ">=14"
   },
   "dependencies": {
-    "@kubernetes-models/base": "workspace:^",
-    "@kubernetes-models/validate": "workspace:^",
+    "@soft-stech/base": "workspace:^",
+    "@soft-stech/validate": "workspace:^",
     "tslib": "^2.4.0"
   },
   "devDependencies": {
-    "@kubernetes-models/openapi-generate": "workspace:^",
-    "@kubernetes-models/publish-scripts": "workspace:^",
-    "@kubernetes-models/read-input": "workspace:^",
-    "@kubernetes-models/string-util": "workspace:^",
+    "@soft-stech/openapi-generate": "workspace:^",
+    "@soft-stech/publish-scripts": "workspace:^",
+    "@soft-stech/read-input": "workspace:^",
+    "@soft-stech/string-util": "workspace:^",
     "@types/lodash": "^4.14.186",
     "@types/node": "^18.7.23",
     "lodash": "^4.17.21",

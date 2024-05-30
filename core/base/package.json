@@ -1,5 +1,5 @@
 {
-  "name": "@kubernetes-models/base",
+  "name": "@soft-stech/base",
   "version": "4.0.3",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
@@ -35,7 +35,7 @@
     "node": ">=14"
   },
   "dependencies": {
-    "@kubernetes-models/validate": "workspace:^",
+    "@soft-stech/validate": "workspace:^",
     "is-plain-object": "^5.0.0",
     "tslib": "^2.4.0",
     "zod": "^3.23.6"

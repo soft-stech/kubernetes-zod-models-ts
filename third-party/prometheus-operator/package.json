@@ -1,5 +1,5 @@
 {
-  "name": "@kubernetes-models/prometheus-operator",
+  "name": "@soft-stech/prometheus-operator",
   "version": "4.3.1",
   "description": "Kubernetes prometheus-operator models",
   "repository": {
@@ -29,14 +29,14 @@
     "prometheus-operator"
   ],
   "dependencies": {
-    "@kubernetes-models/apimachinery": "workspace:^",
-    "@kubernetes-models/base": "workspace:^",
-    "@kubernetes-models/validate": "workspace:^",
+    "@soft-stech/apimachinery": "workspace:^",
+    "@soft-stech/base": "workspace:^",
+    "@soft-stech/validate": "workspace:^",
     "tslib": "^2.4.0"
   },
   "devDependencies": {
-    "@kubernetes-models/crd-generate": "workspace:^",
-    "@kubernetes-models/publish-scripts": "workspace:^",
+    "@soft-stech/crd-generate": "workspace:^",
+    "@soft-stech/publish-scripts": "workspace:^",
     "vitest": "^0.29.8"
   },
   "crd-generate": {

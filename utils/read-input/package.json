@@ -1,5 +1,5 @@
 {
-  "name": "@kubernetes-models/read-input",
+  "name": "@soft-stech/read-input",
   "version": "3.1.1",
   "main": "dist/index.js",
   "module": "dist/index.mjs",

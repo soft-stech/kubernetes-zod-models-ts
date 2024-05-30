@@ -1,5 +1,5 @@
 {
-  "name": "@kubernetes-models/gke",
+  "name": "@soft-stech/gke",
   "version": "4.3.0",
   "description": "Kubernetes GKE models",
   "repository": {
@@ -33,14 +33,14 @@
     "node": ">=14"
   },
   "dependencies": {
-    "@kubernetes-models/apimachinery": "workspace:^",
-    "@kubernetes-models/base": "workspace:^",
-    "@kubernetes-models/validate": "workspace:^",
+    "@soft-stech/apimachinery": "workspace:^",
+    "@soft-stech/base": "workspace:^",
+    "@soft-stech/validate": "workspace:^",
     "tslib": "^2.4.0"
   },
   "devDependencies": {
-    "@kubernetes-models/crd-generate": "workspace:^",
-    "@kubernetes-models/publish-scripts": "workspace:^",
+    "@soft-stech/crd-generate": "workspace:^",
+    "@soft-stech/publish-scripts": "workspace:^",
     "@types/fs-extra": "^9.0.13",
     "@types/node": "^18.7.23",
     "execa": "^5.1.1",

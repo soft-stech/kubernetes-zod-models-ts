@@ -1,5 +1,5 @@
 {
-  "name": "@kubernetes-models/string-util",
+  "name": "@soft-stech/string-util",
   "version": "3.0.1",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
