@@ -334,7 +334,7 @@ describe("Shovel", () => {
         uriSecret: {
           name: "secret-sample"
         },
-        srcAddress: "amqp://src-address",
+        srcAddress: "amqp://scripts-address",
         srcQueue: "source-queue",
         srcExchange: "source-exchange",
         srcExchangeKey: "source-exchange-key",
@@ -372,7 +372,7 @@ describe("Shovel", () => {
         uriSecret: {
           name: "secret-sample"
         },
-        srcAddress: "amqp://src-address",
+        srcAddress: "amqp://scripts-address",
         srcQueue: "source-queue",
         srcExchange: "source-exchange",
         srcExchangeKey: "source-exchange-key",
