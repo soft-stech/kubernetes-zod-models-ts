@@ -1,11 +1,7 @@
-import { camelCase } from "@kubernetes-models/string-util";
+import { camelCase } from "@soft-stech/string-util";
 import { getShortClassName } from "../string";
 import { posix } from "path";
-import {
-  Generator,
-  getAPIVersion,
-  OutputFile
-} from "@kubernetes-models/generate";
+import { Generator, getAPIVersion, OutputFile } from "@soft-stech/generate";
 import { Context } from "../context";
 import { getRelativePath } from "../utils";
 

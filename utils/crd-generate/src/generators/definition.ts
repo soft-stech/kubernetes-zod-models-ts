@@ -8,8 +8,8 @@ import {
   Import,
   OutputFile,
   transformSchema
-} from "@kubernetes-models/generate";
-import { formatComment, trimSuffix } from "@kubernetes-models/string-util";
+} from "@soft-stech/generate";
+import { formatComment, trimSuffix } from "@soft-stech/string-util";
 
 function getFieldType(key: string[]): string | undefined {
   if (key.length === 1 && key[0] === "metadata") {
@@ -59,37 +59,37 @@ constructor(data?: ModelData<${interfaceName}>) {
 
   imports.push({
     name: "IObjectMeta",
-    path: "@kubernetes-models/apimachinery/apis/meta/v1/ObjectMeta"
+    path: "@soft-stech/apimachinery/apis/meta/v1/ObjectMeta"
   });
 
   imports.push({
     name: "addSchema",
-    path: "@kubernetes-models/apimachinery/_schemas/IoK8sApimachineryPkgApisMetaV1ObjectMeta"
+    path: "@soft-stech/apimachinery/_schemas/IoK8sApimachineryPkgApisMetaV1ObjectMeta"
   });
 
   imports.push({
     name: "Model",
-    path: "@kubernetes-models/base"
+    path: "@soft-stech/base"
   });
 
   imports.push({
     name: "setSchema",
-    path: "@kubernetes-models/base"
+    path: "@soft-stech/base"
   });
 
   imports.push({
     name: "ModelData",
-    path: "@kubernetes-models/base"
+    path: "@soft-stech/base"
   });
 
   imports.push({
     name: "createTypeMetaGuard",
-    path: "@kubernetes-models/base"
+    path: "@soft-stech/base"
   });
 
   imports.push({
     name: "register",
-    path: "@kubernetes-models/validate"
+    path: "@soft-stech/validate"
   });
 
   if (def.schema.description) {

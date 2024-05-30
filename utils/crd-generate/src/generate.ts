@@ -7,7 +7,7 @@ import {
   writeOutputFiles,
   Schema,
   getAPIVersion
-} from "@kubernetes-models/generate";
+} from "@soft-stech/generate";
 import generateDefinitions from "./generators/definition";
 import generateAliases from "./generators/alias";
 

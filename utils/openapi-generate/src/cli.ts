@@ -1,5 +1,5 @@
 import yargs from "yargs";
-import { readInput } from "@kubernetes-models/read-input";
+import { readInput } from "@soft-stech/read-input";
 import { generate } from "./generate";
 import { mergeOpenAPISpecs } from "./utils";
 

@@ -1,6 +1,6 @@
 import { describe, it, expect, vi } from "vitest";
 import { Model, setSchema } from "../model";
-import { register } from "@kubernetes-models/validate";
+import { register } from "@soft-stech/validate";
 
 describe("toJSON", () => {
   it("should not set undefined props", () => {

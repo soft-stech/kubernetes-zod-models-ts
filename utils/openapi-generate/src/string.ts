@@ -1,8 +1,4 @@
-import {
-  upperFirst,
-  camelCase,
-  trimPrefix
-} from "@kubernetes-models/string-util";
+import { upperFirst, camelCase, trimPrefix } from "@soft-stech/string-util";
 
 export function getClassName(s: string): string {
   return upperFirst(camelCase(s, ".-"));

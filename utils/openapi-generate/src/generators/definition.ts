@@ -8,12 +8,8 @@ import {
   getAPIVersion,
   Import,
   Schema
-} from "@kubernetes-models/generate";
-import {
-  formatComment,
-  trimPrefix,
-  trimSuffix
-} from "@kubernetes-models/string-util";
+} from "@soft-stech/generate";
+import { formatComment, trimPrefix, trimSuffix } from "@soft-stech/string-util";
 import { mapValues, omit } from "lodash";
 import { Context } from "../context";
 import {
@@ -91,7 +87,7 @@ export default function ({
           if (externalAPIMachinery && isAPIMachineryID(ref)) {
             imports.push({
               name,
-              path: `@kubernetes-models/apimachinery/${trimPrefix(
+              path: `@soft-stech/apimachinery/${trimPrefix(
                 ref,
                 "io.k8s.apimachinery.pkg."
               )
@@ -122,17 +118,17 @@ export default function ({
           if (gvk) {
             imports.push({
               name: "ModelData",
-              path: "@kubernetes-models/base"
+              path: "@soft-stech/base"
             });
 
             imports.push({
               name: "TypeMeta",
-              path: "@kubernetes-models/base"
+              path: "@soft-stech/base"
             });
 
             imports.push({
               name: "createTypeMetaGuard",
-              path: "@kubernetes-models/base"
+              path: "@soft-stech/base"
             });
 
             classContent = `${trimSuffix(classContent, "}")}
@@ -154,12 +150,12 @@ constructor(data?: ModelData<${shortInterfaceName}>) {
 
           imports.push({
             name: "Model",
-            path: "@kubernetes-models/base"
+            path: "@soft-stech/base"
           });
 
           imports.push({
             name: "setSchema",
-            path: "@kubernetes-models/base"
+            path: "@soft-stech/base"
           });
 
           imports.push({

@@ -1,4 +1,4 @@
-import { trimSuffix } from "@kubernetes-models/string-util";
+import { trimSuffix } from "@soft-stech/string-util";
 import { posix } from "path";
 import { getClassName } from "./string";
 

@@ -1,5 +1,5 @@
 import { Schema } from "./types";
-import { formatComment } from "@kubernetes-models/string-util";
+import { formatComment } from "@soft-stech/string-util";
 import indentString from "indent-string";
 import { omit } from "lodash";
 

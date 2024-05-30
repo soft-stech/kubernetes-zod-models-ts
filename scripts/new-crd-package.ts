@@ -34,7 +34,7 @@ const rootDir = join(__dirname, "..");
   }
 
   const pkgJson = {
-    name: `@kubernetes-models/${args.name}`,
+    name: `@soft-stech/${args.name}`,
     version: "0.0.0",
     description: args.description,
     repository: {
@@ -62,14 +62,14 @@ const rootDir = join(__dirname, "..");
       node: ">=14"
     },
     dependencies: {
-      "@kubernetes-models/apimachinery": "workspace:^",
-      "@kubernetes-models/base": "workspace:^",
-      "@kubernetes-models/validate": "workspace:^",
+      "@soft-stech/apimachinery": "workspace:^",
+      "@soft-stech/base": "workspace:^",
+      "@soft-stech/validate": "workspace:^",
       tslib: "^2.4.0"
     },
     devDependencies: {
-      "@kubernetes-models/crd-generate": "workspace:^",
-      "@kubernetes-models/publish-scripts": "workspace:^"
+      "@soft-stech/crd-generate": "workspace:^",
+      "@soft-stech/publish-scripts": "workspace:^"
     },
     "crd-generate": {
       input: [],

@@ -3,8 +3,8 @@ import {
   generate,
   mergeOpenAPISpecs,
   isAPIMachineryID
-} from "@kubernetes-models/openapi-generate";
-import { readInput } from "@kubernetes-models/read-input";
+} from "@soft-stech/openapi-generate";
+import { readInput } from "@soft-stech/read-input";
 import { join } from "path";
 import { OpenAPIV2 } from "openapi-types";
 

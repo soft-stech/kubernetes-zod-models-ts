@@ -1,5 +1,5 @@
 import { isPlainObject } from "is-plain-object";
-import { validate } from "@kubernetes-models/validate";
+import { validate } from "@soft-stech/validate";
 import { TypeMeta } from "./meta";
 
 const SCHEMA_ID = Symbol("SCHEMA_ID");

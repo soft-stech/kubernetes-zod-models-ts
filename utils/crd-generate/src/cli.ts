@@ -1,5 +1,5 @@
 import yargs from "yargs";
-import { readInput } from "@kubernetes-models/read-input";
+import { readInput } from "@soft-stech/read-input";
 import { generate, GenerateOptions } from "./generate";
 
 async function readFiles(paths: string[]): Promise<string> {

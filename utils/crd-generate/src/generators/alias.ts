@@ -1,6 +1,6 @@
-import { Generator, OutputFile } from "@kubernetes-models/generate";
+import { Generator, OutputFile } from "@soft-stech/generate";
 import { set } from "lodash";
-import { camelCase } from "@kubernetes-models/string-util";
+import { camelCase } from "@soft-stech/string-util";
 
 interface KeyMap {
   [key: string]: string | KeyMap;

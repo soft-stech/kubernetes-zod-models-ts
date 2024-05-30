@@ -1,5 +1,5 @@
 /* eslint-disable node/no-unpublished-import */
-import { readInput } from "@kubernetes-models/read-input";
+import { readInput } from "@soft-stech/read-input";
 import { mkdir, writeFile } from "fs/promises";
 import yaml from "js-yaml";
 import { dirname, join } from "path";

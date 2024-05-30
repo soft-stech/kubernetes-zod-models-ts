@@ -1,13 +1,10 @@
 /* eslint-disable node/no-unpublished-import */
-import {
-  generate,
-  isAPIMachineryID
-} from "@kubernetes-models/openapi-generate";
-import { readInput } from "@kubernetes-models/read-input";
+import { generate, isAPIMachineryID } from "@soft-stech/openapi-generate";
+import { readInput } from "@soft-stech/read-input";
 import { join } from "path";
 import { OpenAPIV2 } from "openapi-types";
 import { mapValues, omit } from "lodash";
-import { trimPrefix } from "@kubernetes-models/string-util";
+import { trimPrefix } from "@soft-stech/string-util";
 
 type Document = OpenAPIV2.Document<any>;
 

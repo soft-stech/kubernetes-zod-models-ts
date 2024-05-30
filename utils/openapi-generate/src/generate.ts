@@ -5,7 +5,7 @@ import {
   GroupVersionKind,
   Schema,
   writeOutputFiles
-} from "@kubernetes-models/generate";
+} from "@soft-stech/generate";
 import generateDefinitions from "./generators/definition";
 import generateSchemas from "./generators/schema";
 import generateAliases from "./generators/alias";

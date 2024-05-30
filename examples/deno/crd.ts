@@ -1,4 +1,4 @@
-import { Certificate } from "https://cdn.skypack.dev/@kubernetes-models/cert-manager/cert-manager.io/v1/Certificate?dts";
+import { Certificate } from "https://cdn.skypack.dev/@soft-stech/cert-manager/cert-manager.io/v1/Certificate?dts";
 
 const cert = new Certificate({
   metadata: {

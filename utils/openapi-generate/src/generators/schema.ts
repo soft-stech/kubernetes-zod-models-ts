@@ -6,8 +6,8 @@ import {
   Import,
   Schema,
   transformSchema
-} from "@kubernetes-models/generate";
-import { trimSuffix } from "@kubernetes-models/string-util";
+} from "@soft-stech/generate";
+import { trimSuffix } from "@soft-stech/string-util";
 import { Context } from "../context";
 import { getClassName, trimRefPrefix } from "../string";
 import { getSchemaPath, isAPIMachineryID } from "../utils";
@@ -54,7 +54,7 @@ export default function ({ externalAPIMachinery }: Context): Generator {
 
       imports.push({
         name: "register",
-        path: "@kubernetes-models/validate"
+        path: "@soft-stech/validate"
       });
 
       for (const ref of refs) {
@@ -65,7 +65,7 @@ export default function ({ externalAPIMachinery }: Context): Generator {
           imports.push({
             name,
             alias,
-            path: `@kubernetes-models/apimachinery/${trimSuffix(
+            path: `@soft-stech/apimachinery/${trimSuffix(
               getSchemaPath(ref),
               ".ts"
             )}`

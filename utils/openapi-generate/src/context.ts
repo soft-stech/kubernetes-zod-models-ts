@@ -1,5 +1,5 @@
-import { Definition, getAPIVersion } from "@kubernetes-models/generate";
-import { trimPrefix } from "@kubernetes-models/string-util";
+import { Definition, getAPIVersion } from "@soft-stech/generate";
+import { trimPrefix } from "@soft-stech/string-util";
 import { identity } from "lodash";
 import { getShortClassName } from "./string";
 

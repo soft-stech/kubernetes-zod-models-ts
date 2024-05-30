@@ -5,8 +5,8 @@ import {
   Generator,
   Import,
   Schema
-} from "@kubernetes-models/generate";
-import { formatComment, trimPrefix } from "@kubernetes-models/string-util";
+} from "@soft-stech/generate";
+import { formatComment, trimPrefix } from "@soft-stech/string-util";
 import { camel } from "case";
 import { mapValues, omit } from "lodash";
 // eslint-disable-next-line node/no-extraneous-import
@@ -103,7 +103,7 @@ export default function ({
           const name = getInterfaceName(ref);
 
           if (externalAPIMachinery && isAPIMachineryID(ref)) {
-            const relPath = `@kubernetes-models/apimachinery/${trimPrefix(
+            const relPath = `@soft-stech/apimachinery/${trimPrefix(
               ref,
               "io.k8s.apimachinery.pkg."
             )
@@ -139,12 +139,12 @@ export default function ({
           if (gvk) {
             imports.push({
               name: "TypeMeta",
-              path: "@kubernetes-models/base"
+              path: "@soft-stech/base"
             });
 
             inputOutputMappings.push({
-              input: "@kubernetes-models/base",
-              output: "@kubernetes-models/base"
+              input: "@soft-stech/base",
+              output: "@soft-stech/base"
             });
           }
 
