@@ -10,6 +10,7 @@ import {
 } from "@soft-stech/generate";
 import generateDefinitions from "./generators/definition";
 import generateAliases from "./generators/alias";
+import generateZod from "./generators/zod";
 
 interface CustomResourceDefinition {
   spec: CustomResourceDefinitionSpec;
@@ -133,7 +134,11 @@ function dedupeDefinitions(definitions: readonly Definition[]): Definition[] {
   return Object.values(map);
 }
 
-const generator = composeGenerators([generateDefinitions, generateAliases]);
+const generator = composeGenerators([
+  generateDefinitions,
+  generateAliases,
+  generateZod
+]);
 
 export interface GenerateOptions {
   input: string;

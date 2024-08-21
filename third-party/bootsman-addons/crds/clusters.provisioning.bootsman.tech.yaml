@@ -1,0 +1,1315 @@
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    cert-manager.io/inject-ca-from: provisioning-system/provisioning-serving-cert
+    controller-gen.kubebuilder.io/version: v0.14.0
+  labels:
+    cluster.x-k8s.io/provider: addon-provisioning
+    clusterctl.cluster.x-k8s.io: ''
+    clusterctl.cluster.x-k8s.io/move: ''
+  name: clusters.provisioning.bootsman.tech
+spec:
+  conversion:
+    strategy: None
+  group: provisioning.bootsman.tech
+  names:
+    kind: Cluster
+    listKind: ClusterList
+    plural: clusters
+    singular: cluster
+  scope: Namespaced
+  versions:
+    - name: v1alpha1
+      schema:
+        openAPIV3Schema:
+          description: Cluster is the Schema for the clusters API
+          properties:
+            apiVersion:
+              description: >-
+                APIVersion defines the versioned schema of this representation
+                of an object.
+
+                Servers should convert recognized schemas to the latest internal
+                value, and
+
+                may reject unrecognized values.
+
+                More info:
+                https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+              type: string
+            kind:
+              description: >-
+                Kind is a string value representing the REST resource this
+                object represents.
+
+                Servers may infer this from the endpoint the client submits
+                requests to.
+
+                Cannot be updated.
+
+                In CamelCase.
+
+                More info:
+                https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+              type: string
+            metadata:
+              type: object
+            spec:
+              description: ClusterSpec defines the desired state of Cluster
+              type: object
+              properties:
+                addons:
+                  type: object
+                  properties:
+                    edns:
+                      type: object
+                      required:
+                        - enable
+                      properties:
+                        cfApiEmail:
+                          type: string
+                        cfApiKey:
+                          type: string
+                        domain:
+                          type: string
+                        enable:
+                          type: boolean
+                        ownerID:
+                          type: string
+                        pdnsApiKey:
+                          type: string
+                        pdnsServer:
+                          type: string
+                        provider:
+                          type: string
+                    kubeVipLB:
+                      type: object
+                      required:
+                        - enable
+                      properties:
+                        defaultRange:
+                          type: string
+                        enable:
+                          type: boolean
+                    rancher:
+                      type: object
+                      required:
+                        - bootstrapPassword
+                        - webHostname
+                      properties:
+                        bootstrapPassword:
+                          type: string
+                        webHostname:
+                          type: string
+                    repoURL:
+                      type: string
+                airgap:
+                  type: object
+                  properties:
+                    images:
+                      type: object
+                      required:
+                        - cilium
+                        - rancher
+                      properties:
+                        cilium:
+                          type: string
+                        rancher:
+                          type: string
+                    repository:
+                      type: string
+                bootsmanVersion:
+                  type: string
+                capiConfig:
+                  type: object
+                  required:
+                    - controlPlane
+                    - infrastructure
+                    - kubernetesVersion
+                    - network
+                  properties:
+                    controlPlane:
+                      type: object
+                      required:
+                        - endpoint
+                        - replicas
+                      properties:
+                        endpoint:
+                          type: object
+                          required:
+                            - port
+                          properties:
+                            host:
+                              type: string
+                            port:
+                              type: integer
+                              format: int32
+                        etcd:
+                          type: object
+                          required:
+                            - endpoints
+                          properties:
+                            endpoints:
+                              type: array
+                              items:
+                                type: string
+                        replicas:
+                          type: integer
+                          format: int32
+                    infrastructure:
+                      type: object
+                      required:
+                        - provider
+                      properties:
+                        bareMetalProviderConfig:
+                          type: object
+                          properties:
+                            bundleRepo:
+                              type: string
+                            resources:
+                              description: >-
+                                ResourceRequirements describes the compute
+                                resource requirements.
+                              type: object
+                              properties:
+                                claims:
+                                  description: >-
+                                    Claims lists the names of resources, defined
+                                    in spec.resourceClaims,
+
+                                    that are used by this container.
+
+
+
+                                    This is an alpha field and requires enabling
+                                    the
+
+                                    DynamicResourceAllocation feature gate.
+
+
+
+                                    This field is immutable. It can only be set
+                                    for containers.
+                                  type: array
+                                  items:
+                                    description: >-
+                                      ResourceClaim references one entry in
+                                      PodSpec.ResourceClaims.
+                                    type: object
+                                    required:
+                                      - name
+                                    properties:
+                                      name:
+                                        description: >-
+                                          Name must match the name of one entry in
+                                          pod.spec.resourceClaims of
+
+                                          the Pod where this field is used. It
+                                          makes that resource available
+
+                                          inside a container.
+                                        type: string
+                                  x-kubernetes-list-map-keys:
+                                    - name
+                                  x-kubernetes-list-type: map
+                                limits:
+                                  description: >-
+                                    Limits describes the maximum amount of
+                                    compute resources allowed.
+
+                                    More info:
+                                    https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+                                  type: object
+                                  additionalProperties:
+                                    pattern: >-
+                                      ^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$
+                                    anyOf:
+                                      - type: integer
+                                      - type: string
+                                    x-kubernetes-int-or-string: true
+                                requests:
+                                  description: >-
+                                    Requests describes the minimum amount of
+                                    compute resources required.
+
+                                    If Requests is omitted for a container, it
+                                    defaults to Limits if that is explicitly
+                                    specified,
+
+                                    otherwise to an implementation-defined
+                                    value. Requests cannot exceed Limits.
+
+                                    More info:
+                                    https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+                                  type: object
+                                  additionalProperties:
+                                    pattern: >-
+                                      ^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$
+                                    anyOf:
+                                      - type: integer
+                                      - type: string
+                                    x-kubernetes-int-or-string: true
+                            selector:
+                              description: >-
+                                A label selector is a label query over a set of
+                                resources. The result of matchLabels and
+
+                                matchExpressions are ANDed. An empty label
+                                selector matches all objects. A null
+
+                                label selector matches no objects.
+                              type: object
+                              properties:
+                                matchExpressions:
+                                  description: >-
+                                    matchExpressions is a list of label selector
+                                    requirements. The requirements are ANDed.
+                                  type: array
+                                  items:
+                                    description: >-
+                                      A label selector requirement is a selector
+                                      that contains values, a key, and an
+                                      operator that
+
+                                      relates the key and values.
+                                    type: object
+                                    required:
+                                      - key
+                                      - operator
+                                    properties:
+                                      key:
+                                        description: >-
+                                          key is the label key that the selector
+                                          applies to.
+                                        type: string
+                                      operator:
+                                        description: >-
+                                          operator represents a key's relationship
+                                          to a set of values.
+
+                                          Valid operators are In, NotIn, Exists
+                                          and DoesNotExist.
+                                        type: string
+                                      values:
+                                        description: >-
+                                          values is an array of string values. If
+                                          the operator is In or NotIn,
+
+                                          the values array must be non-empty. If
+                                          the operator is Exists or DoesNotExist,
+
+                                          the values array must be empty. This
+                                          array is replaced during a strategic
+
+                                          merge patch.
+                                        type: array
+                                        items:
+                                          type: string
+                                matchLabels:
+                                  description: >-
+                                    matchLabels is a map of {key,value} pairs. A
+                                    single {key,value} in the matchLabels
+
+                                    map is equivalent to an element of
+                                    matchExpressions, whose key field is "key",
+                                    the
+
+                                    operator is "In", and the values array
+                                    contains only "value". The requirements are
+                                    ANDed.
+                                  type: object
+                                  additionalProperties:
+                                    type: string
+                              x-kubernetes-map-type: atomic
+                        provider:
+                          type: string
+                        sshAuthorizedKeys:
+                          type: array
+                          items:
+                            type: string
+                        vkProviderConfig:
+                          type: object
+                          required:
+                            - LoadBalancerListener
+                            - authConfig
+                            - loadBalancerPool
+                            - network
+                            - projectId
+                            - regionName
+                            - router
+                            - secGroup
+                            - subNetwork
+                            - template
+                          properties:
+                            LoadBalancerListener:
+                              type: object
+                              required:
+                                - name
+                              properties:
+                                adminStateUp:
+                                  type: boolean
+                                name:
+                                  type: string
+                            authConfig:
+                              type: object
+                              required:
+                                - credentials
+                                - identityEndpoint
+                                - userDomainName
+                              properties:
+                                credentials:
+                                  description: VK admin account credentials
+                                  type: object
+                                  required:
+                                    - password
+                                    - username
+                                  properties:
+                                    password:
+                                      type: string
+                                    username:
+                                      type: string
+                                identityEndpoint:
+                                  description: Identity service endpoint
+                                  type: string
+                                userDomainName:
+                                  description: >-
+                                    User domain name if using authentication by
+                                    username
+                                  type: string
+                            loadBalancerPool:
+                              type: object
+                              required:
+                                - lbAlgorithm
+                                - name
+                              properties:
+                                adminStateUp:
+                                  type: boolean
+                                lbAlgorithm:
+                                  type: string
+                                name:
+                                  type: string
+                            network:
+                              type: object
+                              properties:
+                                externalNetworkName:
+                                  type: string
+                                id:
+                                  description: Id существующей сети
+                                  type: string
+                                name:
+                                  description: >-
+                                    Name имя сети в VK Cloud которая будет
+                                    создана в процессе работы контроллера.
+                                  type: string
+                                useExisting:
+                                  description: Флаг создавать ли сеть
+                                  type: boolean
+                            privacy:
+                              type: string
+                            projectId:
+                              type: string
+                            regionName:
+                              type: string
+                            router:
+                              type: object
+                              properties:
+                                adminStateUp:
+                                  type: boolean
+                                externalFixedIps:
+                                  type: array
+                                  items:
+                                    description: >-
+                                      ExternalFixedIP is the IP address and
+                                      subnet ID of the external gateway of a
+
+                                      router.
+                                    type: object
+                                    required:
+                                      - subnetId
+                                    properties:
+                                      ipAddress:
+                                        type: string
+                                      subnetId:
+                                        type: string
+                                id:
+                                  description: Id существующего маршрутизатора
+                                  type: string
+                                name:
+                                  type: string
+                                useExisting:
+                                  description: Флаг создавать ли маршрутизатор
+                                  type: boolean
+                            secGroup:
+                              type: object
+                              properties:
+                                name:
+                                  type: string
+                                secGroupRules:
+                                  type: array
+                                  items:
+                                    type: object
+                                    required:
+                                      - etherType
+                                      - ruleDirection
+                                    properties:
+                                      etherType:
+                                        type: string
+                                      portRangeMax:
+                                        type: integer
+                                      portRangeMin:
+                                        type: integer
+                                      protocol:
+                                        type: string
+                                      remoteIpPrefix:
+                                        type: string
+                                      ruleDirection:
+                                        type: string
+                            subNetwork:
+                              type: object
+                              properties:
+                                allocationPools:
+                                  description: >-
+                                    Sub-ranges of CIDR available for dynamic
+                                    allocation to ports.
+
+                                    See AllocationPool.
+                                  type: array
+                                  items:
+                                    description: >-
+                                      AllocationPool represents a sub-range of
+                                      cidr available for dynamic
+
+                                      allocation to ports, e.g. {Start:
+                                      "10.0.0.2", End: "10.0.0.254"}
+                                    type: object
+                                    required:
+                                      - end
+                                      - start
+                                    properties:
+                                      end:
+                                        type: string
+                                      start:
+                                        type: string
+                                cidr:
+                                  description: >-
+                                    CIDR representing IP range for this subnet,
+                                    based on IP version.
+                                  type: string
+                                dnsNameServers:
+                                  description: >-
+                                    DNSNameservers are the nameservers to be set
+                                    via DHCP.
+                                  type: array
+                                  items:
+                                    type: string
+                                enableDhcp:
+                                  description: >-
+                                    EnableDHCP will either enable to disable the
+                                    DHCP service.
+                                  type: boolean
+                                gatewayIp:
+                                  description: >-
+                                    GatewayIP sets gateway information for the
+                                    subnet. Setting to nil will
+
+                                    cause a default gateway to automatically be
+                                    created. Setting to
+
+                                    an explicit address will set that address as
+                                    the gateway.
+                                  type: string
+                                hostRoutes:
+                                  description: >-
+                                    HostRoutes are any static host routes to be
+                                    set via DHCP.
+                                  type: array
+                                  items:
+                                    description: >-
+                                      HostRoute represents a route that should
+                                      be used by devices with IPs from
+
+                                      a subnet (not including local subnet
+                                      route).
+                                    type: object
+                                    required:
+                                      - destination
+                                      - nexthop
+                                    properties:
+                                      destination:
+                                        type: string
+                                      nexthop:
+                                        type: string
+                                id:
+                                  description: Id существующей подсети
+                                  type: string
+                                name:
+                                  type: string
+                                noGateway:
+                                  description: >-
+                                    Causes the subnet to be created with no
+                                    gateway
+                                  type: boolean
+                                useExisting:
+                                  description: Флаг создавать ли подсеть
+                                  type: boolean
+                            template:
+                              description: >-
+                                VKMachineSpec defines the desired state of
+                                VKMachine
+                              type: object
+                              required:
+                                - flavorRef
+                                - imageId
+                              properties:
+                                availabilityZone:
+                                  description: >-
+                                    AvailabilityZone in which to launch the
+                                    server.
+                                  type: string
+                                flavorRef:
+                                  description: >-
+                                    FlavorRef is the name to the flavor that
+                                    describes the server's specs.
+                                  type: string
+                                imageId:
+                                  description: |-
+                                    OS Image ID
+                                    Image ID to be used to create VM.
+                                  type: string
+                                providerID:
+                                  type: string
+                                volumeSize:
+                                  description: >-
+                                    VolumeSize is the size of the volume to
+                                    create (in gigabytes).
+                                  type: integer
+                                volumeType:
+                                  description: >-
+                                    VolumeType is the volume type of the block
+                                    device.
+                                  type: string
+                        vsphereProviderConfig:
+                          type: object
+                          required:
+                            - secret
+                            - template
+                          properties:
+                            secret:
+                              type: object
+                              required:
+                                - password
+                                - user
+                              properties:
+                                password:
+                                  type: string
+                                user:
+                                  type: string
+                            template:
+                              type: object
+                              required:
+                                - datacenter
+                                - datastore
+                                - folder
+                                - insecureFlag
+                                - networkName
+                                - resource
+                                - serverAddress
+                                - template
+                              properties:
+                                cluster:
+                                  type: string
+                                datacenter:
+                                  type: string
+                                datastore:
+                                  type: string
+                                folder:
+                                  type: string
+                                insecureFlag:
+                                  type: boolean
+                                networkName:
+                                  type: string
+                                resource:
+                                  type: object
+                                  required:
+                                    - diskGiB
+                                    - memoryMiB
+                                    - numCPUs
+                                  properties:
+                                    diskGiB:
+                                      type: integer
+                                      format: int32
+                                    memoryMiB:
+                                      type: integer
+                                      format: int64
+                                    numCPUs:
+                                      type: integer
+                                      format: int32
+                                serverAddress:
+                                  type: string
+                                template:
+                                  type: string
+                        yandexProviderConfig:
+                          type: object
+                          required:
+                            - apiKeySecretRef
+                            - authConfig
+                            - folderId
+                            - network
+                            - privacy
+                            - subnetwork
+                            - templateOptions
+                            - zone
+                          properties:
+                            apiKeySecretRef:
+                              description: >-
+                                ObjectReference contains enough information to
+                                let you inspect or modify the referred object.
+
+                                ---
+
+                                New uses of this type are discouraged because of
+                                difficulty describing its usage when embedded in
+                                APIs.
+                                 1. Ignored fields.  It includes many fields which are not generally honored.  For instance, ResourceVersion and FieldPath are both very rarely valid in actual usage.
+                                 2. Invalid usage help.  It is impossible to add specific help for individual usage.  In most embedded usages, there are particular
+                                    restrictions like, "must refer only to types A and B" or "UID not honored" or "name must be restricted".
+                                    Those cannot be well described when embedded.
+                                 3. Inconsistent validation.  Because the usages are different, the validation rules are different by usage, which makes it hard for users to predict what will happen.
+                                 4. The fields are both imprecise and overly precise.  Kind is not a precise mapping to a URL. This can produce ambiguity
+                                    during interpretation and require a REST mapping.  In most cases, the dependency is on the group,resource tuple
+                                    and the version of the actual struct is irrelevant.
+                                 5. We cannot easily change it.  Because this type is embedded in many locations, updates to this type
+                                    will affect numerous schemas.  Don't make new APIs embed an underspecified API type they do not control.
+
+
+                                Instead of using this type, create a locally
+                                provided and used type that is well-focused on
+                                your reference.
+
+                                For example, ServiceReferences for admission
+                                registration:
+                                https://github.com/kubernetes/api/blob/release-1.17/admissionregistration/v1/types.go#L533
+                                .
+                              type: object
+                              properties:
+                                apiVersion:
+                                  description: API version of the referent.
+                                  type: string
+                                fieldPath:
+                                  description: >-
+                                    If referring to a piece of an object instead
+                                    of an entire object, this string
+
+                                    should contain a valid JSON/Go field access
+                                    statement, such as
+                                    desiredState.manifest.containers[2].
+
+                                    For example, if the object reference is to a
+                                    container within a pod, this would take on a
+                                    value like:
+
+                                    "spec.containers{name}" (where "name" refers
+                                    to the name of the container that triggered
+
+                                    the event) or if no container name is
+                                    specified "spec.containers[2]" (container
+                                    with
+
+                                    index 2 in this pod). This syntax is chosen
+                                    only to have some well-defined way of
+
+                                    referencing a part of an object.
+
+                                    TODO: this design is not final and this
+                                    field is subject to change in the future.
+                                  type: string
+                                kind:
+                                  description: >-
+                                    Kind of the referent.
+
+                                    More info:
+                                    https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+                                  type: string
+                                name:
+                                  description: >-
+                                    Name of the referent.
+
+                                    More info:
+                                    https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+                                  type: string
+                                namespace:
+                                  description: >-
+                                    Namespace of the referent.
+
+                                    More info:
+                                    https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
+                                  type: string
+                                resourceVersion:
+                                  description: >-
+                                    Specific resourceVersion to which this
+                                    reference is made, if any.
+
+                                    More info:
+                                    https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency
+                                  type: string
+                                uid:
+                                  description: >-
+                                    UID of the referent.
+
+                                    More info:
+                                    https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids
+                                  type: string
+                              x-kubernetes-map-type: atomic
+                            authConfig:
+                              type: object
+                              required:
+                                - field
+                                - secretName
+                              properties:
+                                field:
+                                  description: >-
+                                    Field поле в секрете где находится
+                                    JSON-ключ.
+                                  type: string
+                                secretName:
+                                  description: >-
+                                    SecretName имя секрет с JSON-ключом
+                                    сервис-аккаунта яндекса.
+                                  type: string
+                            folderId:
+                              type: string
+                            network:
+                              type: object
+                              properties:
+                                id:
+                                  description: Id существующей сети
+                                  type: string
+                                name:
+                                  description: >-
+                                    Name имя сети в Yandex Cloud которая будет
+                                    использована в процессе работы контроллера.
+                                  type: string
+                                useExisting:
+                                  description: Флаг создавать ли сеть
+                                  type: boolean
+                            privacy:
+                              type: string
+                            subnetwork:
+                              type: object
+                              properties:
+                                cidr:
+                                  description: >-
+                                    TODO rewrite поменять тип на строку, когда
+                                    будем делать новую версию api
+
+                                    CIDR пул IP-адресов выданный под подсеть.
+                                  type: array
+                                  items:
+                                    type: string
+                                id:
+                                  description: Id существующей подсети
+                                  type: string
+                                name:
+                                  description: >-
+                                    Name имя подсети в Yandex Cloud которая
+                                    будет использована в процессе работы
+                                    контроллера.
+                                  type: string
+                                useExisting:
+                                  description: Флаг создавать ли подсеть
+                                  type: boolean
+                            templateOptions:
+                              type: object
+                              required:
+                                - cores
+                                - diskSize
+                                - diskType
+                                - imageId
+                                - memory
+                                - platformId
+                              properties:
+                                cores:
+                                  type: integer
+                                  format: int64
+                                diskSize:
+                                  type: integer
+                                  format: int64
+                                diskType:
+                                  type: string
+                                imageId:
+                                  type: string
+                                memory:
+                                  type: integer
+                                  format: int64
+                                platformId:
+                                  type: string
+                            zone:
+                              type: string
+                    kubeletExtraArgs:
+                      type: object
+                      properties:
+                        evictionHard:
+                          type: string
+                        evictionMaxPodGracePeriod:
+                          type: string
+                        evictionMinimumReclaim:
+                          type: string
+                        kubeReserved:
+                          type: string
+                        maxPods:
+                          type: string
+                        seccompDefault:
+                          type: string
+                        systemReserved:
+                          type: string
+                    kubernetesVersion:
+                      type: string
+                    network:
+                      type: object
+                      required:
+                        - podsCidrBlocks
+                        - servicesCidrBlocks
+                      properties:
+                        podsCidrBlocks:
+                          type: array
+                          items:
+                            type: string
+                        servicesCidrBlocks:
+                          type: array
+                          items:
+                            type: string
+                    registry:
+                      type: object
+                      required:
+                        - credentials
+                        - url
+                      properties:
+                        credentials:
+                          type: object
+                          required:
+                            - password
+                            - username
+                          properties:
+                            password:
+                              type: string
+                            username:
+                              type: string
+                        url:
+                          type: string
+                clusterType:
+                  type: string
+                  default: capi
+                targetCluster:
+                  type: string
+                  default: Workload
+                  enum:
+                    - Management
+                    - Workload
+            status:
+              description: ClusterStatus defines the observed state of Cluster
+              type: object
+              properties:
+                CapiClusterRef:
+                  description: >-
+                    ObjectReference contains enough information to let you
+                    inspect or modify the referred object.
+
+                    ---
+
+                    New uses of this type are discouraged because of difficulty
+                    describing its usage when embedded in APIs.
+                     1. Ignored fields.  It includes many fields which are not generally honored.  For instance, ResourceVersion and FieldPath are both very rarely valid in actual usage.
+                     2. Invalid usage help.  It is impossible to add specific help for individual usage.  In most embedded usages, there are particular
+                        restrictions like, "must refer only to types A and B" or "UID not honored" or "name must be restricted".
+                        Those cannot be well described when embedded.
+                     3. Inconsistent validation.  Because the usages are different, the validation rules are different by usage, which makes it hard for users to predict what will happen.
+                     4. The fields are both imprecise and overly precise.  Kind is not a precise mapping to a URL. This can produce ambiguity
+                        during interpretation and require a REST mapping.  In most cases, the dependency is on the group,resource tuple
+                        and the version of the actual struct is irrelevant.
+                     5. We cannot easily change it.  Because this type is embedded in many locations, updates to this type
+                        will affect numerous schemas.  Don't make new APIs embed an underspecified API type they do not control.
+
+
+                    Instead of using this type, create a locally provided and
+                    used type that is well-focused on your reference.
+
+                    For example, ServiceReferences for admission registration:
+                    https://github.com/kubernetes/api/blob/release-1.17/admissionregistration/v1/types.go#L533
+                    .
+                  type: object
+                  properties:
+                    apiVersion:
+                      description: API version of the referent.
+                      type: string
+                    fieldPath:
+                      description: >-
+                        If referring to a piece of an object instead of an
+                        entire object, this string
+
+                        should contain a valid JSON/Go field access statement,
+                        such as desiredState.manifest.containers[2].
+
+                        For example, if the object reference is to a container
+                        within a pod, this would take on a value like:
+
+                        "spec.containers{name}" (where "name" refers to the name
+                        of the container that triggered
+
+                        the event) or if no container name is specified
+                        "spec.containers[2]" (container with
+
+                        index 2 in this pod). This syntax is chosen only to have
+                        some well-defined way of
+
+                        referencing a part of an object.
+
+                        TODO: this design is not final and this field is subject
+                        to change in the future.
+                      type: string
+                    kind:
+                      description: >-
+                        Kind of the referent.
+
+                        More info:
+                        https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+                      type: string
+                    name:
+                      description: >-
+                        Name of the referent.
+
+                        More info:
+                        https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+                      type: string
+                    namespace:
+                      description: >-
+                        Namespace of the referent.
+
+                        More info:
+                        https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
+                      type: string
+                    resourceVersion:
+                      description: >-
+                        Specific resourceVersion to which this reference is
+                        made, if any.
+
+                        More info:
+                        https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency
+                      type: string
+                    uid:
+                      description: >-
+                        UID of the referent.
+
+                        More info:
+                        https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids
+                      type: string
+                  x-kubernetes-map-type: atomic
+                clusterRegistrationTokenRef:
+                  description: >-
+                    ObjectReference contains enough information to let you
+                    inspect or modify the referred object.
+
+                    ---
+
+                    New uses of this type are discouraged because of difficulty
+                    describing its usage when embedded in APIs.
+                     1. Ignored fields.  It includes many fields which are not generally honored.  For instance, ResourceVersion and FieldPath are both very rarely valid in actual usage.
+                     2. Invalid usage help.  It is impossible to add specific help for individual usage.  In most embedded usages, there are particular
+                        restrictions like, "must refer only to types A and B" or "UID not honored" or "name must be restricted".
+                        Those cannot be well described when embedded.
+                     3. Inconsistent validation.  Because the usages are different, the validation rules are different by usage, which makes it hard for users to predict what will happen.
+                     4. The fields are both imprecise and overly precise.  Kind is not a precise mapping to a URL. This can produce ambiguity
+                        during interpretation and require a REST mapping.  In most cases, the dependency is on the group,resource tuple
+                        and the version of the actual struct is irrelevant.
+                     5. We cannot easily change it.  Because this type is embedded in many locations, updates to this type
+                        will affect numerous schemas.  Don't make new APIs embed an underspecified API type they do not control.
+
+
+                    Instead of using this type, create a locally provided and
+                    used type that is well-focused on your reference.
+
+                    For example, ServiceReferences for admission registration:
+                    https://github.com/kubernetes/api/blob/release-1.17/admissionregistration/v1/types.go#L533
+                    .
+                  type: object
+                  properties:
+                    apiVersion:
+                      description: API version of the referent.
+                      type: string
+                    fieldPath:
+                      description: >-
+                        If referring to a piece of an object instead of an
+                        entire object, this string
+
+                        should contain a valid JSON/Go field access statement,
+                        such as desiredState.manifest.containers[2].
+
+                        For example, if the object reference is to a container
+                        within a pod, this would take on a value like:
+
+                        "spec.containers{name}" (where "name" refers to the name
+                        of the container that triggered
+
+                        the event) or if no container name is specified
+                        "spec.containers[2]" (container with
+
+                        index 2 in this pod). This syntax is chosen only to have
+                        some well-defined way of
+
+                        referencing a part of an object.
+
+                        TODO: this design is not final and this field is subject
+                        to change in the future.
+                      type: string
+                    kind:
+                      description: >-
+                        Kind of the referent.
+
+                        More info:
+                        https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+                      type: string
+                    name:
+                      description: >-
+                        Name of the referent.
+
+                        More info:
+                        https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+                      type: string
+                    namespace:
+                      description: >-
+                        Namespace of the referent.
+
+                        More info:
+                        https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
+                      type: string
+                    resourceVersion:
+                      description: >-
+                        Specific resourceVersion to which this reference is
+                        made, if any.
+
+                        More info:
+                        https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency
+                      type: string
+                    uid:
+                      description: >-
+                        UID of the referent.
+
+                        More info:
+                        https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids
+                      type: string
+                  x-kubernetes-map-type: atomic
+                conditions:
+                  description: >-
+                    Conditions provide observations of the operational state of
+                    a Cluster API resource.
+                  type: array
+                  items:
+                    description: >-
+                      Condition defines an observation of a Cluster API resource
+                      operational state.
+                    type: object
+                    required:
+                      - lastTransitionTime
+                      - status
+                      - type
+                    properties:
+                      lastTransitionTime:
+                        description: >-
+                          Last time the condition transitioned from one status
+                          to another.
+
+                          This should be when the underlying condition changed.
+                          If that is not known, then using the time when
+
+                          the API field changed is acceptable.
+                        type: string
+                        format: date-time
+                      message:
+                        description: >-
+                          A human readable message indicating details about the
+                          transition.
+
+                          This field may be empty.
+                        type: string
+                      reason:
+                        description: >-
+                          The reason for the condition's last transition in
+                          CamelCase.
+
+                          The specific API may choose whether or not this field
+                          is considered a guaranteed API.
+
+                          This field may not be empty.
+                        type: string
+                      severity:
+                        description: >-
+                          Severity provides an explicit classification of Reason
+                          code, so the users or machines can immediately
+
+                          understand the current situation and act accordingly.
+
+                          The Severity field MUST be set only when Status=False.
+                        type: string
+                      status:
+                        description: Status of the condition, one of True, False, Unknown.
+                        type: string
+                      type:
+                        description: >-
+                          Type of condition in CamelCase or in
+                          foo.example.com/CamelCase.
+
+                          Many .condition.type values are consistent across
+                          resources like Available, but because arbitrary
+                          conditions
+
+                          can be useful (see .node.status.conditions), the
+                          ability to deconflict is important.
+                        type: string
+                currentVersion:
+                  type: object
+                  properties:
+                    bootsmanctlVersion:
+                      type: string
+                    kubeVersion:
+                      type: string
+                    museumVersion:
+                      type: string
+                installedAddons:
+                  type: array
+                  items:
+                    type: object
+                    required:
+                      - name
+                      - updatedAt
+                      - version
+                    properties:
+                      message:
+                        type: string
+                      name:
+                        type: string
+                      updatedAt:
+                        type: string
+                        format: date-time
+                      version:
+                        type: string
+                observedGeneration:
+                  type: integer
+                  format: int64
+                rancherClusterRef:
+                  description: >-
+                    ObjectReference contains enough information to let you
+                    inspect or modify the referred object.
+
+                    ---
+
+                    New uses of this type are discouraged because of difficulty
+                    describing its usage when embedded in APIs.
+                     1. Ignored fields.  It includes many fields which are not generally honored.  For instance, ResourceVersion and FieldPath are both very rarely valid in actual usage.
+                     2. Invalid usage help.  It is impossible to add specific help for individual usage.  In most embedded usages, there are particular
+                        restrictions like, "must refer only to types A and B" or "UID not honored" or "name must be restricted".
+                        Those cannot be well described when embedded.
+                     3. Inconsistent validation.  Because the usages are different, the validation rules are different by usage, which makes it hard for users to predict what will happen.
+                     4. The fields are both imprecise and overly precise.  Kind is not a precise mapping to a URL. This can produce ambiguity
+                        during interpretation and require a REST mapping.  In most cases, the dependency is on the group,resource tuple
+                        and the version of the actual struct is irrelevant.
+                     5. We cannot easily change it.  Because this type is embedded in many locations, updates to this type
+                        will affect numerous schemas.  Don't make new APIs embed an underspecified API type they do not control.
+
+
+                    Instead of using this type, create a locally provided and
+                    used type that is well-focused on your reference.
+
+                    For example, ServiceReferences for admission registration:
+                    https://github.com/kubernetes/api/blob/release-1.17/admissionregistration/v1/types.go#L533
+                    .
+                  type: object
+                  properties:
+                    apiVersion:
+                      description: API version of the referent.
+                      type: string
+                    fieldPath:
+                      description: >-
+                        If referring to a piece of an object instead of an
+                        entire object, this string
+
+                        should contain a valid JSON/Go field access statement,
+                        such as desiredState.manifest.containers[2].
+
+                        For example, if the object reference is to a container
+                        within a pod, this would take on a value like:
+
+                        "spec.containers{name}" (where "name" refers to the name
+                        of the container that triggered
+
+                        the event) or if no container name is specified
+                        "spec.containers[2]" (container with
+
+                        index 2 in this pod). This syntax is chosen only to have
+                        some well-defined way of
+
+                        referencing a part of an object.
+
+                        TODO: this design is not final and this field is subject
+                        to change in the future.
+                      type: string
+                    kind:
+                      description: >-
+                        Kind of the referent.
+
+                        More info:
+                        https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+                      type: string
+                    name:
+                      description: >-
+                        Name of the referent.
+
+                        More info:
+                        https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+                      type: string
+                    namespace:
+                      description: >-
+                        Namespace of the referent.
+
+                        More info:
+                        https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
+                      type: string
+                    resourceVersion:
+                      description: >-
+                        Specific resourceVersion to which this reference is
+                        made, if any.
+
+                        More info:
+                        https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency
+                      type: string
+                    uid:
+                      description: >-
+                        UID of the referent.
+
+                        More info:
+                        https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids
+                      type: string
+                  x-kubernetes-map-type: atomic
+          type: object
+      served: true
+      storage: true
+      subresources:
+        status: {}
+status:
+  acceptedNames:
+    kind: Cluster
+    listKind: ClusterList
+    plural: clusters
+    singular: cluster
+  conditions:
+    - lastTransitionTime: 2024-07-30T09:59:53.000Z
+      message: no conflicts found
+      reason: NoConflicts
+      status: 'True'
+      type: NamesAccepted
+    - lastTransitionTime: 2024-07-30T09:59:53.000Z
+      message: the initial names have been accepted
+      reason: InitialNamesAccepted
+      status: 'True'
+      type: Established
+  storedVersions:
+    - v1alpha1
