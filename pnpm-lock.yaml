@@ -268,32 +268,6 @@ importers:
         specifier: ^17.0.13
         version: 17.0.13
 
-  third-party/argo-cd:
-    dependencies:
-      '@soft-stech/apimachinery':
-        specifier: workspace:^
-        version: link:../../first-party/apimachinery/dist
-      '@soft-stech/base':
-        specifier: workspace:^
-        version: link:../../core/base
-      '@soft-stech/validate':
-        specifier: workspace:^
-        version: link:../../core/validate
-      tslib:
-        specifier: ^2.4.0
-        version: 2.6.2
-    devDependencies:
-      '@soft-stech/crd-generate':
-        specifier: workspace:^
-        version: link:../../utils/crd-generate
-      '@soft-stech/publish-scripts':
-        specifier: workspace:^
-        version: link:../../internal/publish-scripts
-      vitest:
-        specifier: ^0.29.8
-        version: 0.29.8
-    publishDirectory: dist
-
   third-party/argo-rollouts:
     dependencies:
       '@soft-stech/apimachinery':
@@ -770,58 +744,6 @@ importers:
         version: 0.29.8
     publishDirectory: dist
 
-  third-party/jaeger-operator:
-    dependencies:
-      '@soft-stech/apimachinery':
-        specifier: workspace:^
-        version: link:../../first-party/apimachinery/dist
-      '@soft-stech/base':
-        specifier: workspace:^
-        version: link:../../core/base
-      '@soft-stech/validate':
-        specifier: workspace:^
-        version: link:../../core/validate
-      tslib:
-        specifier: ^2.4.0
-        version: 2.6.2
-    devDependencies:
-      '@soft-stech/crd-generate':
-        specifier: workspace:^
-        version: link:../../utils/crd-generate
-      '@soft-stech/publish-scripts':
-        specifier: workspace:^
-        version: link:../../internal/publish-scripts
-      vitest:
-        specifier: ^0.29.8
-        version: 0.29.8
-    publishDirectory: dist
-
-  third-party/k8ssandra-operator:
-    dependencies:
-      '@soft-stech/apimachinery':
-        specifier: workspace:^
-        version: link:../../first-party/apimachinery/dist
-      '@soft-stech/base':
-        specifier: workspace:^
-        version: link:../../core/base
-      '@soft-stech/validate':
-        specifier: workspace:^
-        version: link:../../core/validate
-      tslib:
-        specifier: ^2.4.0
-        version: 2.6.2
-    devDependencies:
-      '@soft-stech/crd-generate':
-        specifier: workspace:^
-        version: link:../../utils/crd-generate
-      '@soft-stech/publish-scripts':
-        specifier: workspace:^
-        version: link:../../internal/publish-scripts
-      vitest:
-        specifier: ^0.29.8
-        version: 0.29.8
-    publishDirectory: dist
-
   third-party/kapp-controller:
     dependencies:
       '@soft-stech/apimachinery':
@@ -901,32 +823,6 @@ importers:
     publishDirectory: dist
 
   third-party/knative:
-    dependencies:
-      '@soft-stech/apimachinery':
-        specifier: workspace:^
-        version: link:../../first-party/apimachinery/dist
-      '@soft-stech/base':
-        specifier: workspace:^
-        version: link:../../core/base
-      '@soft-stech/validate':
-        specifier: workspace:^
-        version: link:../../core/validate
-      tslib:
-        specifier: ^2.4.0
-        version: 2.6.2
-    devDependencies:
-      '@soft-stech/crd-generate':
-        specifier: workspace:^
-        version: link:../../utils/crd-generate
-      '@soft-stech/publish-scripts':
-        specifier: workspace:^
-        version: link:../../internal/publish-scripts
-      vitest:
-        specifier: ^0.29.8
-        version: 0.29.8
-    publishDirectory: dist
-
-  third-party/kubedb:
     dependencies:
       '@soft-stech/apimachinery':
         specifier: workspace:^
@@ -1291,58 +1187,6 @@ importers:
     publishDirectory: dist
 
   third-party/spiffe:
-    dependencies:
-      '@soft-stech/apimachinery':
-        specifier: workspace:^
-        version: link:../../first-party/apimachinery/dist
-      '@soft-stech/base':
-        specifier: workspace:^
-        version: link:../../core/base
-      '@soft-stech/validate':
-        specifier: workspace:^
-        version: link:../../core/validate
-      tslib:
-        specifier: ^2.4.0
-        version: 2.6.2
-    devDependencies:
-      '@soft-stech/crd-generate':
-        specifier: workspace:^
-        version: link:../../utils/crd-generate
-      '@soft-stech/publish-scripts':
-        specifier: workspace:^
-        version: link:../../internal/publish-scripts
-      vitest:
-        specifier: ^0.29.8
-        version: 0.29.8
-    publishDirectory: dist
-
-  third-party/thanos-operator:
-    dependencies:
-      '@soft-stech/apimachinery':
-        specifier: workspace:^
-        version: link:../../first-party/apimachinery/dist
-      '@soft-stech/base':
-        specifier: workspace:^
-        version: link:../../core/base
-      '@soft-stech/validate':
-        specifier: workspace:^
-        version: link:../../core/validate
-      tslib:
-        specifier: ^2.4.0
-        version: 2.6.2
-    devDependencies:
-      '@soft-stech/crd-generate':
-        specifier: workspace:^
-        version: link:../../utils/crd-generate
-      '@soft-stech/publish-scripts':
-        specifier: workspace:^
-        version: link:../../internal/publish-scripts
-      vitest:
-        specifier: ^0.29.8
-        version: 0.29.8
-    publishDirectory: dist
-
-  third-party/tidb-operator:
     dependencies:
       '@soft-stech/apimachinery':
         specifier: workspace:^
