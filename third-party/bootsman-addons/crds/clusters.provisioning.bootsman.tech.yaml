@@ -1,29 +1,112 @@
 apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
-  annotations:
-    cert-manager.io/inject-ca-from: provisioning-system/provisioning-serving-cert
-    controller-gen.kubebuilder.io/version: v0.14.0
+  name: clusters.provisioning.bootsman.tech
+  uid: 930aff09-d91c-4194-84cb-946144eb85ed
+  resourceVersion: '2756'
+  generation: 1
+  creationTimestamp: '2024-08-22T13:17:31Z'
   labels:
     cluster.x-k8s.io/provider: addon-provisioning
     clusterctl.cluster.x-k8s.io: ''
     clusterctl.cluster.x-k8s.io/move: ''
-  name: clusters.provisioning.bootsman.tech
-spec:
-  conversion:
-    strategy: None
-  group: provisioning.bootsman.tech
-  names:
-    kind: Cluster
-    listKind: ClusterList
+  annotations:
+    cert-manager.io/inject-ca-from: provisioning-system/provisioning-serving-cert
+    controller-gen.kubebuilder.io/version: v0.14.0
+  managedFields:
+    - manager: clusterctl
+      operation: Update
+      apiVersion: apiextensions.k8s.io/v1
+      time: '2024-08-22T13:17:31Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        f:metadata:
+          f:annotations:
+            .: {}
+            f:cert-manager.io/inject-ca-from: {}
+            f:controller-gen.kubebuilder.io/version: {}
+          f:labels:
+            .: {}
+            f:cluster.x-k8s.io/provider: {}
+            f:clusterctl.cluster.x-k8s.io: {}
+            f:clusterctl.cluster.x-k8s.io/move: {}
+        f:spec:
+          f:conversion:
+            .: {}
+            f:strategy: {}
+          f:group: {}
+          f:names:
+            f:kind: {}
+            f:listKind: {}
+            f:plural: {}
+            f:singular: {}
+          f:scope: {}
+          f:versions: {}
+    - manager: kube-apiserver
+      operation: Update
+      apiVersion: apiextensions.k8s.io/v1
+      time: '2024-08-22T13:17:31Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        f:status:
+          f:acceptedNames:
+            f:kind: {}
+            f:listKind: {}
+            f:plural: {}
+            f:singular: {}
+          f:conditions:
+            k:{"type":"Established"}:
+              .: {}
+              f:lastTransitionTime: {}
+              f:message: {}
+              f:reason: {}
+              f:status: {}
+              f:type: {}
+            k:{"type":"NamesAccepted"}:
+              .: {}
+              f:lastTransitionTime: {}
+              f:message: {}
+              f:reason: {}
+              f:status: {}
+              f:type: {}
+      subresource: status
+  selfLink: >-
+    /apis/apiextensions.k8s.io/v1/customresourcedefinitions/clusters.provisioning.bootsman.tech
+status:
+  conditions:
+    - type: NamesAccepted
+      status: 'True'
+      lastTransitionTime: '2024-08-22T13:17:31Z'
+      reason: NoConflicts
+      message: no conflicts found
+    - type: Established
+      status: 'True'
+      lastTransitionTime: '2024-08-22T13:17:31Z'
+      reason: InitialNamesAccepted
+      message: the initial names have been accepted
+  acceptedNames:
     plural: clusters
     singular: cluster
+    kind: Cluster
+    listKind: ClusterList
+  storedVersions:
+    - v1alpha1
+spec:
+  group: provisioning.bootsman.tech
+  names:
+    plural: clusters
+    singular: cluster
+    kind: Cluster
+    listKind: ClusterList
   scope: Namespaced
   versions:
     - name: v1alpha1
+      served: true
+      storage: true
       schema:
         openAPIV3Schema:
           description: Cluster is the Schema for the clusters API
+          type: object
           properties:
             apiVersion:
               description: >-
@@ -559,14 +642,18 @@ spec:
                                 VKMachine
                               type: object
                               required:
+                                - availabilityZones
                                 - flavorRef
                                 - imageId
                               properties:
-                                availabilityZone:
+                                availabilityZones:
                                   description: >-
-                                    AvailabilityZone in which to launch the
-                                    server.
-                                  type: string
+                                    AvailabilityZones in which to launch the VM
+                                    with round-robin selection if multiple AZs
+                                    provided.
+                                  type: array
+                                  items:
+                                    type: string
                                 flavorRef:
                                   description: >-
                                     FlavorRef is the name to the flavor that
@@ -592,10 +679,24 @@ spec:
                         vsphereProviderConfig:
                           type: object
                           required:
-                            - secret
                             - template
                           properties:
+                            credentials:
+                              type: object
+                              required:
+                                - secretName
+                                - secretNamespace
+                              properties:
+                                passwordKey:
+                                  type: string
+                                secretName:
+                                  type: string
+                                secretNamespace:
+                                  type: string
+                                usernameKey:
+                                  type: string
                             secret:
+                              description: 'Deprecated: Use credentials instead'
                               type: object
                               required:
                                 - password
@@ -1187,6 +1288,8 @@ spec:
                         type: string
                       name:
                         type: string
+                      state:
+                        type: string
                       updatedAt:
                         type: string
                         format: date-time
@@ -1289,27 +1392,7 @@ spec:
                         https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids
                       type: string
                   x-kubernetes-map-type: atomic
-          type: object
-      served: true
-      storage: true
       subresources:
         status: {}
-status:
-  acceptedNames:
-    kind: Cluster
-    listKind: ClusterList
-    plural: clusters
-    singular: cluster
-  conditions:
-    - lastTransitionTime: 2024-07-30T09:59:53.000Z
-      message: no conflicts found
-      reason: NoConflicts
-      status: 'True'
-      type: NamesAccepted
-    - lastTransitionTime: 2024-07-30T09:59:53.000Z
-      message: the initial names have been accepted
-      reason: InitialNamesAccepted
-      status: 'True'
-      type: Established
-  storedVersions:
-    - v1alpha1
+  conversion:
+    strategy: None
