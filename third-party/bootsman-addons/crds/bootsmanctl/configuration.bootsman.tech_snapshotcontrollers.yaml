@@ -1,0 +1,110 @@
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.15.0
+    crd.bootsman.tech/dependent-addons: "longhorn:All"
+    crd.bootsman.tech/dependent-addons-config: "Longhorn:All"
+    crd.bootsman.tech/required-in-clusters: ""
+  labels:
+    clusterctl.cluster.x-k8s.io/move: ""
+    crd.bootsman.tech/addon-name: snapshot-controller
+    crd.bootsman.tech/target-cluster-type: All
+    crd.bootsman.tech/type: Addon
+  name: snapshotcontrollers.configuration.bootsman.tech
+spec:
+  group: configuration.bootsman.tech
+  names:
+    categories:
+    - bootsman
+    kind: SnapshotController
+    listKind: SnapshotControllerList
+    plural: snapshotcontrollers
+    singular: snapshotcontroller
+  scope: Namespaced
+  versions:
+  - name: v1alpha1
+    schema:
+      openAPIV3Schema:
+        description: SnapshotController is the Schema for the SnapshotController API
+        properties:
+          apiVersion:
+            description: |-
+              APIVersion defines the versioned schema of this representation of an object.
+              Servers should convert recognized schemas to the latest internal value, and
+              may reject unrecognized values.
+              More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+            type: string
+          kind:
+            description: |-
+              Kind is a string value representing the REST resource this object represents.
+              Servers may infer this from the endpoint the client submits requests to.
+              Cannot be updated.
+              In CamelCase.
+              More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+            type: string
+          metadata:
+            type: object
+          spec:
+            description: SnapshotControllerSpec defines the desired state of SnapshotController
+            properties:
+              controller:
+                properties:
+                  volumeSnapshotClasses:
+                    items:
+                      properties:
+                        annotations:
+                          additionalProperties:
+                            type: string
+                          type: object
+                        deletionPolicy:
+                          type: string
+                        driver:
+                          type: string
+                        labels:
+                          additionalProperties:
+                            type: string
+                          type: object
+                        name:
+                          type: string
+                        parameters:
+                          properties:
+                            type:
+                              type: string
+                          required:
+                          - type
+                          type: object
+                      required:
+                      - annotations
+                      - deletionPolicy
+                      - driver
+                      - labels
+                      - name
+                      type: object
+                    type: array
+                required:
+                - volumeSnapshotClasses
+                type: object
+              disabled:
+                default: false
+                type: boolean
+              webhook:
+                properties:
+                  webhook:
+                    properties:
+                      failurePolicy:
+                        type: string
+                    required:
+                    - failurePolicy
+                    type: object
+                type: object
+            type: object
+          status:
+            description: SnapshotControllerStatus defines the observed state of SnapshotController
+            type: object
+        type: object
+    served: true
+    storage: true
+    subresources:
+      status: {}

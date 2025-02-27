@@ -55,8 +55,24 @@ function _generateInterface(
         for (const key of Object.keys(properties)) {
           const prop = properties[key];
 
-          if (includeDescription && typeof prop.description === "string") {
-            output += formatComment(prop.description);
+          if (
+            includeDescription &&
+            typeof (
+              prop.description === "string" || typeof prop.default !== undefined
+            )
+          ) {
+            // skip defaults if they are objects
+            // TODO default objects (records)
+            const options = {
+              ...(prop.default && typeof prop.default !== "object"
+                ? { [`default ${JSON.stringify(prop.default)}`]: true }
+                : {}),
+              ...(prop.minLength && { [`minLength ${prop.minLength}`]: true }),
+              ...(prop.maxLength && { [`maxLength ${prop.maxLength}`]: true }),
+              ...(prop.minimum && { [`minimum ${prop.minimum}`]: true }),
+              ...(prop.maximum && { [`maximum ${prop.maximum}`]: true })
+            };
+            output += formatComment(prop.description || "", options);
           }
 
           output += `${JSON.stringify(key)}`;

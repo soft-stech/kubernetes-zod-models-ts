@@ -1,0 +1,207 @@
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.15.0
+    crd.bootsman.tech/dependent-addons: ""
+    crd.bootsman.tech/dependent-addons-config: ""
+    crd.bootsman.tech/required-in-clusters: ""
+  labels:
+    clusterctl.cluster.x-k8s.io/move: ""
+    crd.bootsman.tech/addon-name: descheduler
+    crd.bootsman.tech/target-cluster-type: All
+    crd.bootsman.tech/type: Addon
+  name: deschedulers.configuration.bootsman.tech
+spec:
+  group: configuration.bootsman.tech
+  names:
+    categories:
+    - bootsman
+    kind: Descheduler
+    listKind: DeschedulerList
+    plural: deschedulers
+    singular: descheduler
+  scope: Namespaced
+  versions:
+  - name: v1alpha1
+    schema:
+      openAPIV3Schema:
+        description: Descheduler is the Schema for the Descheduler API
+        properties:
+          apiVersion:
+            description: |-
+              APIVersion defines the versioned schema of this representation of an object.
+              Servers should convert recognized schemas to the latest internal value, and
+              may reject unrecognized values.
+              More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+            type: string
+          kind:
+            description: |-
+              Kind is a string value representing the REST resource this object represents.
+              Servers may infer this from the endpoint the client submits requests to.
+              Cannot be updated.
+              In CamelCase.
+              More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+            type: string
+          metadata:
+            type: object
+          spec:
+            description: DeschedulerSpec defines the desired state of Descheduler
+            properties:
+              deschedulerPolicy:
+                properties:
+                  evictLocalStoragePods:
+                    type: boolean
+                  nodeSelector:
+                    type: string
+                  profiles:
+                    items:
+                      properties:
+                        LowNodeUtilization:
+                          properties:
+                            enabled:
+                              type: boolean
+                            targetThresholds:
+                              properties:
+                                cpu:
+                                  format: int32
+                                  type: integer
+                                memory:
+                                  format: int32
+                                  type: integer
+                                pods:
+                                  format: int32
+                                  type: integer
+                              required:
+                              - cpu
+                              - memory
+                              - pods
+                              type: object
+                            thresholds:
+                              properties:
+                                cpu:
+                                  format: int32
+                                  type: integer
+                                memory:
+                                  format: int32
+                                  type: integer
+                                pods:
+                                  format: int32
+                                  type: integer
+                              required:
+                              - cpu
+                              - memory
+                              - pods
+                              type: object
+                          required:
+                          - enabled
+                          type: object
+                        RemoveDuplicates:
+                          properties:
+                            enabled:
+                              type: boolean
+                            excludeOwnerKinds:
+                              items:
+                                type: string
+                              type: array
+                          required:
+                          - enabled
+                          - excludeOwnerKinds
+                          type: object
+                        RemovePodsHavingTooManyRestarts:
+                          properties:
+                            enabled:
+                              type: boolean
+                            includingInitContainers:
+                              type: boolean
+                            podRestartThreshold:
+                              format: int32
+                              type: integer
+                          required:
+                          - enabled
+                          - includingInitContainers
+                          - podRestartThreshold
+                          type: object
+                        RemovePodsViolatingNodeAffinity:
+                          properties:
+                            enabled:
+                              type: boolean
+                            nodeAffinityType:
+                              items:
+                                type: string
+                              type: array
+                          required:
+                          - enabled
+                          - nodeAffinityType
+                          type: object
+                        RemovePodsViolatingNodeTaints:
+                          properties:
+                            enableExcludedTaints:
+                              type: boolean
+                            enableIncludedTaints:
+                              type: boolean
+                            enabled:
+                              type: boolean
+                            excludedTaints:
+                              items:
+                                type: string
+                              type: array
+                            includedTaints:
+                              items:
+                                type: string
+                              type: array
+                          required:
+                          - enableExcludedTaints
+                          - enableIncludedTaints
+                          - enabled
+                          - excludedTaints
+                          - includedTaints
+                          type: object
+                        RemovePodsViolatingTopologySpreadConstraint:
+                          properties:
+                            constraints:
+                              items:
+                                type: string
+                              type: array
+                            enabled:
+                              type: boolean
+                            topologyBalanceNodeFit:
+                              type: boolean
+                          required:
+                          - constraints
+                          - enabled
+                          - topologyBalanceNodeFit
+                          type: object
+                        name:
+                          type: string
+                      required:
+                      - name
+                      type: object
+                    type: array
+                required:
+                - evictLocalStoragePods
+                - nodeSelector
+                - profiles
+                type: object
+              deschedulingInterval:
+                description: |-
+                  Duration is a valid time duration.
+                  Supported units: y, w, d, h, m, s, ms
+                  Examples: `30s`, `1m`, `1h20m15s`, `15d`
+                pattern: ^(0|(([0-9]+)y)?(([0-9]+)w)?(([0-9]+)d)?(([0-9]+)h)?(([0-9]+)m)?(([0-9]+)s)?(([0-9]+)ms)?)$
+                type: string
+              disabled:
+                default: false
+                type: boolean
+            required:
+            - deschedulingInterval
+            type: object
+          status:
+            description: DeschedulerStatus defines the observed state of Descheduler
+            type: object
+        type: object
+    served: true
+    storage: true
+    subresources:
+      status: {}

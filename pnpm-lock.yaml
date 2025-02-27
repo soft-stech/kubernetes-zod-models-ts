@@ -1309,8 +1309,8 @@ importers:
         specifier: ^4.17.21
         version: 4.17.21
       ts-to-zod:
-        specifier: ^3.8.3
-        version: 3.8.3
+        specifier: 3.15.0
+        version: 3.15.0
       tslib:
         specifier: ^2.4.0
         version: 2.6.2
@@ -3929,6 +3929,10 @@ packages:
       '@swc/wasm':
         optional: true
 
+  ts-to-zod@3.15.0:
+    resolution: {integrity: sha512-Lu5ITqD8xCIo4JZp4Cg3iSK3J2x3TGwwuDtNHfAIlx1mXWKClRdzqV+x6CFEzhKtJlZzhyvJIqg7DzrWfsdVSg==}
+    hasBin: true
+
   ts-to-zod@3.8.3:
     resolution: {integrity: sha512-Q2YK++PvoUVS/Ysz/bZ/dApjN+fsc/oukyJJbBtTbsaWg/5BsBJ3keJURcDSl0SGjE8fvGxYNGMRT1v7sBO6vA==}
     hasBin: true
@@ -4241,6 +4245,9 @@ packages:
 
   zod@3.23.6:
     resolution: {integrity: sha512-RTHJlZhsRbuA8Hmp/iNL7jnfc4nZishjsanDAfEY1QpDQZCahUp3xDzl+zfweE9BklxMUcgBgS1b7Lvie/ZVwA==}
+
+  zod@3.24.2:
+    resolution: {integrity: sha512-lY7CDW43ECgW9u1TcT3IoXHflywfVqDYze4waEz812jR/bZ8FHDsl7pFQoSZTz5N+2NqRXs8GBwnAwo3ZNxqhQ==}
 
 snapshots:
 
@@ -6943,6 +6950,27 @@ snapshots:
       v8-compile-cache-lib: 3.0.1
       yn: 3.1.1
 
+  ts-to-zod@3.15.0:
+    dependencies:
+      '@oclif/core': 3.26.6
+      '@typescript/vfs': 1.5.0
+      case: 1.6.3
+      chokidar: 3.6.0
+      fs-extra: 11.2.0
+      inquirer: 8.2.6
+      lodash: 4.17.21
+      ora: 5.4.1
+      prettier: 3.0.3
+      rxjs: 7.5.7
+      slash: 3.0.0
+      threads: 1.7.0
+      tslib: 2.6.2
+      tsutils: 3.21.0(typescript@5.4.5)
+      typescript: 5.4.5
+      zod: 3.24.2
+    transitivePeerDependencies:
+      - supports-color
+
   ts-to-zod@3.8.3:
     dependencies:
       '@oclif/core': 3.26.6
@@ -7269,3 +7297,5 @@ snapshots:
   yocto-queue@1.0.0: {}
 
   zod@3.23.6: {}
+
+  zod@3.24.2: {}

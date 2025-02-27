@@ -9,7 +9,7 @@ import {
   OutputFile,
   transformSchema
 } from "@soft-stech/generate";
-import { formatComment, trimSuffix } from "@soft-stech/string-util";
+import { formatComment } from "@soft-stech/string-util";
 import { generate } from "ts-to-zod";
 
 function getFieldType(key: string[]): string | undefined {

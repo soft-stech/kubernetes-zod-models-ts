@@ -1,0 +1,125 @@
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.15.0
+    crd.bootsman.tech/dependent-addons: "snapshot-controller:All"
+    crd.bootsman.tech/dependent-addons-config: "SnapshotController:All"
+    crd.bootsman.tech/required-in-clusters: ""
+  labels:
+    clusterctl.cluster.x-k8s.io/move: ""
+    crd.bootsman.tech/addon-name: velero
+    crd.bootsman.tech/target-cluster-type: All
+    crd.bootsman.tech/type: Addon
+  name: veleroes.configuration.bootsman.tech
+spec:
+  group: configuration.bootsman.tech
+  names:
+    categories:
+    - bootsman
+    kind: Velero
+    listKind: VeleroList
+    plural: veleroes
+    singular: velero
+  scope: Namespaced
+  versions:
+  - name: v1alpha1
+    schema:
+      openAPIV3Schema:
+        description: Velero is the Schema for the Velero API
+        properties:
+          apiVersion:
+            description: |-
+              APIVersion defines the versioned schema of this representation of an object.
+              Servers should convert recognized schemas to the latest internal value, and
+              may reject unrecognized values.
+              More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+            type: string
+          kind:
+            description: |-
+              Kind is a string value representing the REST resource this object represents.
+              Servers may infer this from the endpoint the client submits requests to.
+              Cannot be updated.
+              In CamelCase.
+              More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+            type: string
+          metadata:
+            type: object
+          spec:
+            description: VeleroSpec defines the desired state of Velero
+            properties:
+              configuration:
+                properties:
+                  backupStorageLocation:
+                    items:
+                      properties:
+                        bucket:
+                          type: string
+                        config:
+                          additionalProperties:
+                            type: string
+                          type: object
+                        name:
+                          type: string
+                        prefix:
+                          type: string
+                        provider:
+                          type: string
+                      required:
+                      - bucket
+                      - config
+                      - name
+                      - prefix
+                      - provider
+                      type: object
+                    type: array
+                  features:
+                    type: string
+                  volumeSnapshotLocation:
+                    items:
+                      properties:
+                        config:
+                          additionalProperties:
+                            type: string
+                          type: object
+                        name:
+                          type: string
+                        provider:
+                          type: string
+                      required:
+                      - config
+                      - name
+                      - provider
+                      type: object
+                    type: array
+                required:
+                - backupStorageLocation
+                - features
+                - volumeSnapshotLocation
+                type: object
+              credentials:
+                properties:
+                  secretContents:
+                    properties:
+                      awsAccessKeyId:
+                        type: string
+                      awsSecretAccessKey:
+                        type: string
+                    required:
+                    - awsAccessKeyId
+                    - awsSecretAccessKey
+                    type: object
+                type: object
+              disabled:
+                default: false
+                type: boolean
+            type: object
+          status:
+            description: VeleroStatus defines the observed state of Velero
+            type: object
+        type: object
+    served: true
+    storage: true
+    subresources:
+      status: {}

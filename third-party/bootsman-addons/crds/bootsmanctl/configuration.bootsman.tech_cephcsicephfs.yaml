@@ -1,0 +1,104 @@
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.15.0
+    crd.bootsman.tech/dependent-addons: ""
+    crd.bootsman.tech/dependent-addons-config: ""
+    crd.bootsman.tech/required-in-clusters: ""
+  labels:
+    clusterctl.cluster.x-k8s.io/move: ""
+    crd.bootsman.tech/addon-name: ceph-csi-cephfs
+    crd.bootsman.tech/target-cluster-type: All
+    crd.bootsman.tech/type: Addon
+  name: cephcsicephfs.configuration.bootsman.tech
+spec:
+  group: configuration.bootsman.tech
+  names:
+    categories:
+    - bootsman
+    kind: CephCsiCephfs
+    listKind: CephCsiCephfsList
+    plural: cephcsicephfs
+    singular: cephcsicephfs
+  scope: Namespaced
+  versions:
+  - name: v1alpha1
+    schema:
+      openAPIV3Schema:
+        description: CephCsiCephfs is the Schema for the CephCsiCephfs API
+        properties:
+          apiVersion:
+            description: |-
+              APIVersion defines the versioned schema of this representation of an object.
+              Servers should convert recognized schemas to the latest internal value, and
+              may reject unrecognized values.
+              More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+            type: string
+          kind:
+            description: |-
+              Kind is a string value representing the REST resource this object represents.
+              Servers may infer this from the endpoint the client submits requests to.
+              Cannot be updated.
+              In CamelCase.
+              More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+            type: string
+          metadata:
+            type: object
+          spec:
+            description: CephCsiCephfsSpec defines the desired state of CephCsiCephfs
+            properties:
+              csiConfig:
+                properties:
+                  clusterID:
+                    type: string
+                  monitors:
+                    items:
+                      type: string
+                    type: array
+                required:
+                - clusterID
+                - monitors
+                type: object
+              disabled:
+                default: false
+                type: boolean
+              secret:
+                properties:
+                  adminID:
+                    type: string
+                  adminKey:
+                    type: string
+                  create:
+                    type: boolean
+                required:
+                - adminID
+                - adminKey
+                - create
+                type: object
+              storageClass:
+                properties:
+                  clusterID:
+                    type: string
+                  fsName:
+                    type: string
+                  mounter:
+                    type: string
+                  pool:
+                    type: string
+                required:
+                - clusterID
+                - fsName
+                - mounter
+                - pool
+                type: object
+            type: object
+          status:
+            description: CephCsiCephfsStatus defines the observed state of CephCsiCephfs
+            type: object
+        type: object
+    served: true
+    storage: true
+    subresources:
+      status: {}

@@ -1,0 +1,63 @@
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.15.0
+    crd.bootsman.tech/dependent-addons: "ui-plugin-operator:Management"
+    crd.bootsman.tech/dependent-addons-config: "UIPluginOperator:Management"
+    crd.bootsman.tech/required-in-clusters: ""
+  labels:
+    clusterctl.cluster.x-k8s.io/move: ""
+    crd.bootsman.tech/addon-name: billing-ui-plugin
+    crd.bootsman.tech/target-cluster-type: Management
+    crd.bootsman.tech/type: Addon
+  name: billinguiplugins.configuration.bootsman.tech
+spec:
+  group: configuration.bootsman.tech
+  names:
+    categories:
+    - bootsman
+    kind: BillingUIPlugin
+    listKind: BillingUIPluginList
+    plural: billinguiplugins
+    singular: billinguiplugin
+  scope: Namespaced
+  versions:
+  - name: v1alpha1
+    schema:
+      openAPIV3Schema:
+        description: BillingUIPlugin is the Schema for the BillingUIPlugin API
+        properties:
+          apiVersion:
+            description: |-
+              APIVersion defines the versioned schema of this representation of an object.
+              Servers should convert recognized schemas to the latest internal value, and
+              may reject unrecognized values.
+              More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+            type: string
+          kind:
+            description: |-
+              Kind is a string value representing the REST resource this object represents.
+              Servers may infer this from the endpoint the client submits requests to.
+              Cannot be updated.
+              In CamelCase.
+              More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+            type: string
+          metadata:
+            type: object
+          spec:
+            description: BillingUIPluginSpec defines the desired state of BillingUIPlugin
+            properties:
+              disabled:
+                default: false
+                type: boolean
+            type: object
+          status:
+            description: BillingUIPluginStatus defines the observed state of BillingUIPlugin
+            type: object
+        type: object
+    served: true
+    storage: true
+    subresources:
+      status: {}

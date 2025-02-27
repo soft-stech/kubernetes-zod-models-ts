@@ -16,6 +16,9 @@ async function fetchSpec(): Promise<string> {
 
   return documents.join("\n---\n");
 }
+
+console.log("Generating Bootsman CRD definitions...");
+
 (async () => {
   const spec = await fetchSpec();
   await generate({
