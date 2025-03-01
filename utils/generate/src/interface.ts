@@ -46,6 +46,17 @@ function _generateInterface(
     )}>`;
   }
 
+  const compileRegExp = (str: string): RegExp | undefined => {
+    try {
+      const regex = new RegExp(str);
+      console.warn("valid regex", str, regex);
+      return regex;
+    } catch {
+      console.warn("invalid regex", str);
+      return undefined;
+    }
+  };
+
   const result = (() => {
     switch (schema.type) {
       case "object": {
@@ -55,12 +66,32 @@ function _generateInterface(
         for (const key of Object.keys(properties)) {
           const prop = properties[key];
 
-          if (
-            includeDescription &&
-            typeof (
-              prop.description === "string" || typeof prop.default !== undefined
-            )
-          ) {
+          if (includeDescription) {
+            let pattern = {};
+            if (prop.pattern) {
+              if (prop.anyOf && prop["x-kubernetes-int-or-string"]) {
+                // skip for now
+                // @schema can't be used here because it will ignore other jsdoc comments
+              } else if (prop.type === "array") {
+                console.warn("Skipping array regexp:", prop.pattern);
+              } else {
+                const regexpString = compileRegExp(prop.pattern);
+
+                if (prop.pattern.includes("*/")) {
+                  console.warn(
+                    "Skipping regexp, breaks comment */:",
+                    prop.pattern
+                  );
+                } else if (regexpString) {
+                  pattern = {
+                    [`pattern ${regexpString.toString().slice(1, -1)}`]: true
+                  };
+                } else {
+                  console.warn("Invalid regex pattern:", prop.pattern);
+                }
+              }
+            }
+
             // skip defaults if they are objects
             // TODO default objects (records)
             const options = {
@@ -70,7 +101,9 @@ function _generateInterface(
               ...(prop.minLength && { [`minLength ${prop.minLength}`]: true }),
               ...(prop.maxLength && { [`maxLength ${prop.maxLength}`]: true }),
               ...(prop.minimum && { [`minimum ${prop.minimum}`]: true }),
-              ...(prop.maximum && { [`maximum ${prop.maximum}`]: true })
+              ...(prop.maximum && { [`maximum ${prop.maximum}`]: true }),
+              ...(prop.format && { [`format ${prop.format}`]: true }),
+              ...pattern
             };
             output += formatComment(prop.description || "", options);
           }
