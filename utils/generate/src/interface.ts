@@ -48,9 +48,7 @@ function _generateInterface(
 
   const compileRegExp = (str: string): RegExp | undefined => {
     try {
-      const regex = new RegExp(str);
-      console.warn("valid regex", str, regex);
-      return regex;
+      return new RegExp(str);
     } catch {
       console.warn("invalid regex", str);
       return undefined;
@@ -68,15 +66,28 @@ function _generateInterface(
 
           if (includeDescription) {
             let pattern = {};
+            let schema = {};
+
             if (prop.pattern) {
-              if (prop.anyOf && prop["x-kubernetes-int-or-string"]) {
-                // skip for now
-                // @schema can't be used here because it will ignore other jsdoc comments
+              const regexpString = compileRegExp(prop.pattern);
+
+              if (
+                prop.anyOf &&
+                prop["x-kubernetes-int-or-string"] &&
+                regexpString
+              ) {
+                const optional = !required.includes(key) ? `.optional()` : ``;
+                const union = `union([z.number(), z.string().regex(${regexpString.toString()})])`;
+                const defaultValue = prop.default
+                  ? `.default(${JSON.stringify(prop.default)})`
+                  : ``;
+
+                schema = {
+                  [`schema ${union}${optional}${defaultValue}`]: true
+                };
               } else if (prop.type === "array") {
                 console.warn("Skipping array regexp:", prop.pattern);
               } else {
-                const regexpString = compileRegExp(prop.pattern);
-
                 if (prop.pattern.includes("*/")) {
                   console.warn(
                     "Skipping regexp, breaks comment */:",
@@ -103,7 +114,8 @@ function _generateInterface(
               ...(prop.minimum && { [`minimum ${prop.minimum}`]: true }),
               ...(prop.maximum && { [`maximum ${prop.maximum}`]: true }),
               ...(prop.format && { [`format ${prop.format}`]: true }),
-              ...pattern
+              ...pattern,
+              ...schema
             };
             output += formatComment(prop.description || "", options);
           }
