@@ -24,6 +24,10 @@ async function loadSchema(schemaPath: string): Promise<z.ZodSchema> {
   }
 }
 
+function toCamelCase(str: string): string {
+  return str.charAt(0).toLowerCase() + str.slice(1);
+}
+
 async function generateDefaults(): Promise<void> {
   consola.start("Аддоны (defaults) обрабатываются");
 
@@ -44,9 +48,16 @@ async function generateDefaults(): Promise<void> {
       const kind = result.data.kind;
 
       const json = JSON.stringify(def);
+      const kindVar = `${toCamelCase(kind)}Base`;
       const content = `
 // Generated default
-export default ${json}
+const ${kindVar} = ${json};
+
+// Default export
+export default ${kindVar};
+
+// Named export
+export { ${kindVar} };
     `;
 
       const formattedContent = await prettier.format(content, {
