@@ -10,3 +10,4 @@ gen/
 /.pnpm-store/
 
 .turbo/
+.env
