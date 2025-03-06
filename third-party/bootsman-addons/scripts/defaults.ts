@@ -40,6 +40,8 @@ async function generateDefaults(): Promise<void> {
     spec: z.object({})
   });
 
+  const jsons: { [key: string]: z.infer<typeof schema>[] } = {};
+
   for (const def of defaults) {
     const result = schema.safeParse(def);
 
@@ -78,6 +80,9 @@ export { ${kindVar} };
         if (result.success) {
           consola.info(`${basePath} соответствует схеме`);
           fs.writeFileSync(basePath, formattedContent, "utf8");
+
+          jsons[result.data.apiVersion] = jsons[result.data.apiVersion] || [];
+          jsons[result.data.apiVersion].push(result.data);
         } else {
           consola.error(`Файл ${basePath} не соответствует схеме. Пропускаем!`);
         }
@@ -88,6 +93,30 @@ export { ${kindVar} };
       consola.error(def);
     }
   }
+
+  Object.entries(jsons).forEach(async ([apiVersion, data]) => {
+    const [api, version] = apiVersion.split("/");
+    const allJsons = `
+// Generated default
+const allDefaults = ${JSON.stringify(data)};
+
+// Default export
+export default allDefaults;
+
+// Named export
+export { allDefaults };
+    `;
+
+    const formattedContent = await prettier.format(allJsons, {
+      semi: true,
+      parser: "typescript",
+      trailingComma: "none"
+    });
+
+    const basePath = `gen/${api}/${version}/all.base.ts`;
+
+    fs.writeFileSync(basePath, formattedContent, "utf8");
+  });
 
   consola.success("Аддоны (defaults) обработаны");
   consola.success("Процесс успешно завершен");
