@@ -65,7 +65,7 @@ const rootDir = join(__dirname, "..");
       "@soft-stech/apimachinery": "workspace:^",
       "@soft-stech/base": "workspace:^",
       "@soft-stech/validate": "workspace:^",
-      tslib: "^2.4.0"
+      "@swc/helpers": "^0.5.8"
     },
     devDependencies: {
       "@soft-stech/crd-generate": "workspace:^",

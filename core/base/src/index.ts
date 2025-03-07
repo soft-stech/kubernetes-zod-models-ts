@@ -1,3 +1,3 @@
-export { Model, ModelData, ModelConstructor, setSchema } from "./model";
+export { Model, ModelData, ModelConstructor, setValidateFunc } from "./model";
 export { TypeMeta, TypeMetaGuard, createTypeMetaGuard } from "./meta";
 export { typeMetaSchema } from "./meta.schema";

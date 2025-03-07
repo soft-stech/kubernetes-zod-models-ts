@@ -1,6 +1,6 @@
 {
   "name": "@soft-stech/argo-rollouts",
-  "version": "0.3.1",
+  "version": "0.4.2",
   "description": "Argo Rollouts models",
   "repository": {
     "type": "git",
@@ -34,7 +34,7 @@
     "@soft-stech/apimachinery": "workspace:^",
     "@soft-stech/base": "workspace:^",
     "@soft-stech/validate": "workspace:^",
-    "tslib": "^2.4.0"
+    "@swc/helpers": "^0.5.8"
   },
   "devDependencies": {
     "@soft-stech/crd-generate": "workspace:^",

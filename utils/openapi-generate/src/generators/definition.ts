@@ -61,6 +61,7 @@ export default function ({
           }
         );
         const path = getDefinitionPath(def.schemaId);
+        const schemaPath = getRelativePath(path, getSchemaPath(def.schemaId));
         let content = "";
         let comment = "";
 
@@ -115,12 +116,12 @@ export default function ({
             }
           });
 
-          if (gvk) {
-            imports.push({
-              name: "ModelData",
-              path: "@soft-stech/base"
-            });
+          imports.push({
+            name: "ModelData",
+            path: "@soft-stech/base"
+          });
 
+          if (gvk) {
             imports.push({
               name: "TypeMeta",
               path: "@soft-stech/base"
@@ -132,60 +133,66 @@ export default function ({
             });
 
             classContent = `${trimSuffix(classContent, "}")}
-static apiVersion: ${shortInterfaceName}["apiVersion"] = "${getAPIVersion(
-              gvk
-            )}";
-static kind: ${shortInterfaceName}["kind"] = "${gvk.kind}";
-static is = createTypeMetaGuard<${shortInterfaceName}>(${shortClassName});
+  static apiVersion: ${shortInterfaceName}["apiVersion"] = "${getAPIVersion(
+    gvk
+  )}";
+  static kind: ${shortInterfaceName}["kind"] = "${gvk.kind}";
+  static is = createTypeMetaGuard<${shortInterfaceName}>(${shortClassName});
 
-constructor(data?: ModelData<${shortInterfaceName}>) {
-  super({
-    apiVersion: ${shortClassName}.apiVersion,
-    kind: ${shortClassName}.kind,
-    ...data
-  } as ${shortInterfaceName});
-}
-}`;
+  constructor(data?: ModelData<${shortInterfaceName}>) {
+    super();
+
+    this.setDefinedProps({
+      apiVersion: ${shortClassName}.apiVersion,
+      kind: ${shortClassName}.kind,
+      ...data
+    } as ${shortInterfaceName});
+  }
+  }`;
+          } else {
+            classContent = `${trimSuffix(classContent, "}")}
+  constructor(data?: ModelData<${shortInterfaceName}>) {
+    super();
+
+    this.setDefinedProps(data);
+  }
+  }`;
           }
 
+          imports.push({ name: "Model", path: "@soft-stech/base" });
           imports.push({
-            name: "Model",
+            name: "setValidateFunc",
             path: "@soft-stech/base"
           });
-
           imports.push({
-            name: "setSchema",
-            path: "@soft-stech/base"
+            name: "ValidateFunc",
+            path: "@soft-stech/validate"
           });
-
-          imports.push({
-            name: "addSchema",
-            path: getRelativePath(path, getSchemaPath(def.schemaId))
-          });
+          imports.push({ name: "validate", path: schemaPath });
 
           content += `
-${comment}export interface ${shortInterfaceName}${
-            gvk ? " extends TypeMeta " : " "
-          }${typing}
+  ${comment}export interface ${shortInterfaceName}${
+    gvk ? " extends TypeMeta " : " "
+  }${typing}
 
-${comment}export class ${shortClassName} extends Model<${shortInterfaceName}> implements ${shortInterfaceName} ${classContent}
+  ${comment}export class ${shortClassName} extends Model<${shortInterfaceName}> implements ${shortInterfaceName} ${classContent}
 
-setSchema(${shortClassName}, ${JSON.stringify(def.schemaId)}, addSchema);
-`;
+  setValidateFunc(${shortClassName}, validate as ValidateFunc<${shortInterfaceName}>);
+  `;
         } else {
           content += `
-${comment}export type ${shortInterfaceName} = ${typing};
+  ${comment}export type ${shortInterfaceName} = ${typing};
 
-export type ${shortClassName} = ${shortInterfaceName};
-`;
+  export type ${shortClassName} = ${shortInterfaceName};
+  `;
         }
 
         content += `
-export {
-  ${shortInterfaceName} as ${interfaceName},
-  ${shortClassName} as ${className}
-};
-`;
+  export {
+    ${shortInterfaceName} as ${interfaceName},
+    ${shortClassName} as ${className}
+  };
+  `;
 
         if (imports.length) {
           content = generateImports(imports) + "\n" + content;

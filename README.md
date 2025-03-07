@@ -61,6 +61,7 @@ iPodSchema.parse(pod);
 
 - [@kubernetes-models/argo-cd](third-party/argo-cd) - [Argo CD](https://argo-cd.readthedocs.io/) models.
 - [@kubernetes-models/argo-rollouts](third-party/argo-rollouts) - [Argo Rollouts](https://argoproj.github.io/argo-rollouts/) models.
+- [@kubernetes-models/argo-workflows](third-party/argo-workflows) - [Argo Workflows](https://argoproj.github.io/argo-workflows/) models.
 - [@kubernetes-models/autoscaler](third-party/autoscaler) - [Kubernetes Autoscaler](https://github.com/kubernetes/autoscaler) models.
 - [@kubernetes-models/cert-manager](third-party/cert-manager) - [cert-manager](https://cert-manager.io/) models.
 - [@kubernetes-models/cilium](third-party/cilium) - [Cilium](https://cilium.io/) CRD.
@@ -68,6 +69,7 @@ iPodSchema.parse(pod);
 - [@kubernetes-models/elastic-cloud](third-party/elastic-cloud) - [Elastic Cloud on Kubernetes (ECK)](https://www.elastic.co/guide/en/cloud-on-k8s/current/k8s-overview.html) models.
 - [@kubernetes-models/envoy-gateway](third-party/envoy-gateway) - [Envoy Gateway](https://gateway.envoyproxy.io/) models.
 - [@kubernetes-models/external-secrets](third-party/external-secrets) - [External secrets](https://external-secrets.io) models.
+- [@kubernetes-models/fission](third-party/fission) - [Fission](https://fission.io) models.
 - [@kubernetes-models/flagger](third-party/flagger) - [Flagger](https://flagger.app/) models.
 - [@kubernetes-models/flux-cd](third-party/flux-cd) - [Flux CD](https://fluxcd.io/) models.
 - [@kubernetes-models/gateway-api](third-party/gateway-api) - [Gateway API](https://gateway-api.sigs.k8s.io/) models.

@@ -6,10 +6,10 @@ import {
   getAPIVersion,
   GroupVersionKind,
   Import,
-  OutputFile,
-  transformSchema
+  OutputFile
 } from "@soft-stech/generate";
 import { formatComment, trimSuffix } from "@soft-stech/string-util";
+import { getRelativePath, getSchemaPath } from "../utils";
 
 function getFieldType(key: string[]): string | undefined {
   if (key.length === 1 && key[0] === "metadata") {
@@ -29,6 +29,7 @@ function generateDefinition(
     includeDescription: true,
     getFieldType
   });
+  const path = `${apiVersion}/${className}.ts`;
   let classContent = generateInterface(def.schema, {
     getFieldType(key) {
       if (key.length === 1) {
@@ -48,7 +49,9 @@ static kind: ${interfaceName}["kind"] = ${JSON.stringify(gvk.kind)};
 static is = createTypeMetaGuard<${interfaceName}>(${className});
 
 constructor(data?: ModelData<${interfaceName}>) {
-  super({
+  super();
+
+  this.setDefinedProps({
     apiVersion: ${className}.apiVersion,
     kind: ${className}.kind,
     ...data
@@ -63,17 +66,7 @@ constructor(data?: ModelData<${interfaceName}>) {
   });
 
   imports.push({
-    name: "addSchema",
-    path: "@soft-stech/apimachinery/_schemas/IoK8sApimachineryPkgApisMetaV1ObjectMeta"
-  });
-
-  imports.push({
     name: "Model",
-    path: "@soft-stech/base"
-  });
-
-  imports.push({
-    name: "setSchema",
     path: "@soft-stech/base"
   });
 
@@ -83,13 +76,23 @@ constructor(data?: ModelData<${interfaceName}>) {
   });
 
   imports.push({
+    name: "setValidateFunc",
+    path: "@soft-stech/base"
+  });
+
+  imports.push({
     name: "createTypeMetaGuard",
     path: "@soft-stech/base"
   });
 
   imports.push({
-    name: "register",
+    name: "ValidateFunc",
     path: "@soft-stech/validate"
+  });
+
+  imports.push({
+    name: "validate",
+    path: getRelativePath(path, getSchemaPath(def.schemaId))
   });
 
   if (def.schema.description) {
@@ -98,23 +101,15 @@ constructor(data?: ModelData<${interfaceName}>) {
     });
   }
 
-  const schema = transformSchema(def.schema);
-
   return {
-    path: `${apiVersion}/${className}.ts`,
+    path,
     content: `${generateImports(imports)}
-
-const schemaId = ${JSON.stringify(def.schemaId)};
-const schema = ${JSON.stringify(schema, null, "  ")};
 
 ${comment}export interface ${interfaceName} ${interfaceContent}
 
 ${comment}export class ${className} extends Model<${interfaceName}> implements ${interfaceName} ${classContent}
 
-setSchema(${className}, schemaId, () => {
-  addSchema();
-  register(schemaId, schema);
-});
+setValidateFunc(${className}, validate as ValidateFunc<${interfaceName}>);
 `
   };
 }
