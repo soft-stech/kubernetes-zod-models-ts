@@ -27,6 +27,7 @@ Run pnpm run build
 ```js
 import { IBillingPluginServerSchema } from "@soft-stech/bootsman-addons/configuration.bootsman.tech/v1alpha1/BillingPluginServer.schema";
 import { billingPluginServerBase } from "@soft-stech/bootsman-addons/configuration.bootsman.tech/v1alpha1/BillingPluginServer.base";
+import { allDefaults } from "@soft-stech/bootsman-addons/configuration.bootsman.tech/v1alpha1/all.base";
 
 const result = IBillingPluginServerSchema.safeParse(billingPluginServerBase);
 
