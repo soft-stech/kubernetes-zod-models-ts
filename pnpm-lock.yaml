@@ -568,6 +568,32 @@ importers:
         version: 0.29.8
     publishDirectory: dist
 
+  third-party/fleet:
+    dependencies:
+      '@soft-stech/apimachinery':
+        specifier: workspace:^
+        version: link:../../first-party/apimachinery/dist
+      '@soft-stech/base':
+        specifier: workspace:^
+        version: link:../../core/base
+      '@soft-stech/validate':
+        specifier: workspace:^
+        version: link:../../core/validate
+      tslib:
+        specifier: ^2.4.0
+        version: 2.6.2
+    devDependencies:
+      '@soft-stech/crd-generate':
+        specifier: workspace:^
+        version: link:../../utils/crd-generate
+      '@soft-stech/publish-scripts':
+        specifier: workspace:^
+        version: link:../../internal/publish-scripts
+      vitest:
+        specifier: ^0.29.8
+        version: 0.29.8
+    publishDirectory: dist
+
   third-party/flux-cd:
     dependencies:
       '@soft-stech/apimachinery':
