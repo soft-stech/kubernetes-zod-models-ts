@@ -25,7 +25,7 @@ async function fetchSpec(): Promise<Document> {
   const specs: OpenAPIV2.Document[] = [];
 
   for (const ver of VERSIONS) {
-    const url = `../../../kubernetes-openapi-spec/openapi/${ver}.json`;
+    const url = `./../../kubernetes-openapi-spec/openapi/${ver}.json`;
 
     console.log("Reading:", url);
     specs.push(JSON.parse(await readInput(url)));

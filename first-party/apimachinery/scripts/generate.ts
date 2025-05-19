@@ -13,7 +13,7 @@ const VERSION = "1.30.0";
 
 async function fetchSpec(): Promise<Document> {
   return JSON.parse(
-    await readInput(`../../../kubernetes-openapi-spec/openapi/${VERSION}.json`)
+    await readInput(`./../../kubernetes-openapi-spec/openapi/${VERSION}.json`)
   );
 }
 
