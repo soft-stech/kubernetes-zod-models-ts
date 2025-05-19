@@ -129,7 +129,7 @@ and than run make all. After that update the versions in first-party/apimachiner
 MIT
 
 ## Публикация новой версии
-
+В первый раз нужно сгенерировать токен на github с правами read:user, repo:status и положить его в переменную GITHUB_TOKEN файла .env
 Выполнить `pnpm changeset` выбрать нужные пакеты
 Выполнить `pnpm exec changeset version` выбрать тип обновления major/minor/patch
 Выполнить `pnpm run clean` для очистки лишнего
