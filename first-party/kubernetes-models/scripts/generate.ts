@@ -11,10 +11,7 @@ import { OpenAPIV2 } from "openapi-types";
 type Document = OpenAPIV2.Document<any>;
 
 /**
- * Older versions first. Add only versions with removed APIs and latest version.
- *
- * Removed APIs: https://kubernetes.io/docs/reference/using-api/deprecation-guide/
- * Available versions: https://github.com/tommy351/kubernetes-openapi-spec/tree/main/openapi
+ * Available versions: kubernetes-openapi-spec repo
  */
 const VERSIONS = [
   // Latest version
