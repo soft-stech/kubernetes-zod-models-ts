@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.5.0
+
+### Minor Changes
+
+- test update
+
 ## 4.4.2
 
 ### Patch Changes

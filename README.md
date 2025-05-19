@@ -129,9 +129,17 @@ and than run make all. After that update the versions in first-party/apimachiner
 MIT
 
 ## Публикация новой версии
+
 В первый раз нужно сгенерировать токен на github с правами read:user, repo:status и положить его в переменную GITHUB_TOKEN файла .env
+Зайти на https://github.com/settings/tokens и создать.
 Выполнить `pnpm changeset` выбрать нужные пакеты
 Выполнить `pnpm exec changeset version` выбрать тип обновления major/minor/patch
 Выполнить `pnpm run clean` для очистки лишнего
 Выполнить `pnpm run build` для сборки всех пакетов, то что не обновлялось будет закешировано
 Выполнить публикацию на npm `pnpm publish -r --access public --no-git-checks`
+
+Q: Пишет need auth You need to authorize this machine using npm adduser
+A: создать акк на npm и авторизоваться npm adduser
+
+Q: Пишет например ERR! 404 Not Found - PUT https://registry.npmjs.org/@soft-stech%2fkubernetes-models - Not found
+A: Проверить что у юзера npm есть права на организацию soft-stech или на пакет
