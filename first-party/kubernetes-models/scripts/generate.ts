@@ -17,21 +17,15 @@ type Document = OpenAPIV2.Document<any>;
  * Available versions: https://github.com/tommy351/kubernetes-openapi-spec/tree/main/openapi
  */
 const VERSIONS = [
-  // Old versions with removed APIs
-  "1.15.5",
-  "1.21.2",
-  "1.24.2",
   // Latest version
-  "1.25.0",
-  "1.26.1",
-  "1.27.1"
+  "1.30.0"
 ];
 
 async function fetchSpec(): Promise<Document> {
   const specs: OpenAPIV2.Document[] = [];
 
   for (const ver of VERSIONS) {
-    const url = `https://raw.githubusercontent.com/tommy351/kubernetes-openapi-spec/main/openapi/${ver}.json`;
+    const url = `../../../kubernetes-openapi-spec/openapi/${ver}.json`;
 
     console.log("Reading:", url);
     specs.push(JSON.parse(await readInput(url)));
