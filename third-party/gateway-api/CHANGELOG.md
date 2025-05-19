@@ -1,5 +1,12 @@
 # @kubernetes-models/gateway-api
 
+## 0.5.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @soft-stech/apimachinery@1.3.2
+
 ## 0.5.0
 
 ### Minor Changes

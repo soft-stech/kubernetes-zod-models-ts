@@ -1,5 +1,12 @@
 # @kubernetes-models/karpenter
 
+## 0.1.2
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @soft-stech/apimachinery@1.3.2
+
 ## 0.1.1
 
 ### Patch Changes

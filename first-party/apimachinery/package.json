@@ -1,6 +1,6 @@
 {
   "name": "@soft-stech/apimachinery",
-  "version": "1.3.1",
+  "version": "1.3.2",
   "description": "Types for Kubernetes API objects",
   "repository": {
     "type": "git",

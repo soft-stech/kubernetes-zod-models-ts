@@ -1,5 +1,12 @@
 # @kubernetes-models/kyverno
 
+## 0.2.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @soft-stech/apimachinery@1.3.2
+
 ## 0.2.0
 
 ### Minor Changes

@@ -1,5 +1,12 @@
 # Change Log
 
+## 4.3.3
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @soft-stech/apimachinery@1.3.2
+
 ## 4.3.1
 
 ### Patch Changes

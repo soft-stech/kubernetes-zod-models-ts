@@ -1,5 +1,12 @@
 # @kubernetes-models/redis-operator
 
+## 0.2.4
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @soft-stech/apimachinery@1.3.2
+
 ## 0.2.3
 
 ### Patch Changes

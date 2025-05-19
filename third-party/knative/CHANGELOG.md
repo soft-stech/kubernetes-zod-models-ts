@@ -1,5 +1,12 @@
 # @kubernetes-models/knative
 
+## 2.3.2
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @soft-stech/apimachinery@1.3.2
+
 ## 2.3.1
 
 ### Patch Changes

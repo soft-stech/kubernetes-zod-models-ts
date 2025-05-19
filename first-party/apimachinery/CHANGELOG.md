@@ -1,5 +1,11 @@
 # @kubernetes-models/apimachinery
 
+## 1.3.2
+
+### Patch Changes
+
+- updated CRDs
+
 ## 1.2.1
 
 ### Patch Changes

@@ -1,5 +1,12 @@
 # @kubernetes-models/flux-cd
 
+## 2.2.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @soft-stech/apimachinery@1.3.2
+
 ## 2.2.0
 
 ### Minor Changes

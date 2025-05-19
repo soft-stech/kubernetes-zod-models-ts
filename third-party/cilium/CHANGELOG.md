@@ -1,5 +1,12 @@
 # @kubernetes-models/cilium
 
+## 2.3.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @soft-stech/apimachinery@1.3.2
+
 ## 2.2.3
 
 ### Patch Changes

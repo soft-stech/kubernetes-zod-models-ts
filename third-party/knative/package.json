@@ -1,6 +1,6 @@
 {
   "name": "@soft-stech/knative",
-  "version": "2.3.1",
+  "version": "2.3.2",
   "description": "Knative models",
   "repository": {
     "type": "git",

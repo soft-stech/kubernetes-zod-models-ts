@@ -127,3 +127,11 @@ and than run make all. After that update the versions in first-party/apimachiner
 ## License
 
 MIT
+
+## Публикация новой версии
+
+Выполнить `pnpm changeset` выбрать нужные пакеты
+Выполнить `pnpm exec changeset version` выбрать тип обновления major/minor/patch
+Выполнить `pnpm run clean` для очистки лишнего
+Выполнить `pnpm run build` для сборки всех пакетов, то что не обновлялось будет закешировано
+Выполнить публикацию на npm `pnpm publish -r --access public --no-git-checks`

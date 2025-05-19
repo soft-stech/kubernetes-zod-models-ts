@@ -1,6 +1,6 @@
 {
   "name": "@soft-stech/istio",
-  "version": "2.3.0",
+  "version": "2.3.1",
   "description": "Istio models",
   "repository": {
     "type": "git",

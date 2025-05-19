@@ -1,5 +1,12 @@
 # @kubernetes-models/postgres-operator
 
+## 0.3.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @soft-stech/apimachinery@1.3.2
+
 ## 0.3.0
 
 ### Minor Changes

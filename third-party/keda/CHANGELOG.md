@@ -1,5 +1,12 @@
 # @kubernetes-models/keda
 
+## 0.3.2
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @soft-stech/apimachinery@1.3.2
+
 ## 0.3.1
 
 ### Patch Changes

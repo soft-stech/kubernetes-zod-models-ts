@@ -1,6 +1,6 @@
 {
   "name": "@soft-stech/cert-manager",
-  "version": "4.3.1",
+  "version": "4.3.2",
   "description": "cert-manager models",
   "repository": {
     "type": "git",
