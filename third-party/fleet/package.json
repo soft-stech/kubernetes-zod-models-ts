@@ -1,6 +1,6 @@
 {
   "name": "@soft-stech/fleet",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Rancher Fleet CRD",
   "repository": {
     "type": "git",
@@ -43,7 +43,7 @@
   },
   "crd-generate": {
     "input": [
-      "https://raw.githubusercontent.com/rancher/fleet/refs/tags/v0.12.2/charts/fleet-crd/templates/crds.yaml"
+      "https://raw.githubusercontent.com/rancher/fleet/refs/tags/v0.10.7/charts/fleet-crd/templates/crds.yaml"
     ],
     "output": "./gen"
   }
