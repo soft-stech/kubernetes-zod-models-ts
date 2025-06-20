@@ -1,5 +1,11 @@
 # @soft-stech/bootsman-addons
 
+## 0.4.0
+
+### Minor Changes
+
+- bootsman-addons v2.5.0-dev.1092 -> v2.7.0-dev.28. bootsman-addons defaults generation removed. clusters.provisioning.cattle.io yaml added
+
 ## 0.3.1
 
 - Updated Provisioning Operator to v2.7.0-dev.28
