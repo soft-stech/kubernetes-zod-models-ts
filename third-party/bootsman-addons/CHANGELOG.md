@@ -1,5 +1,9 @@
 # @soft-stech/bootsman-addons
 
+## 0.3.1
+
+- Updated Provisioning Operator to v2.7.0-dev.28
+
 ## 0.3.0
 
 ### Minor Changes
