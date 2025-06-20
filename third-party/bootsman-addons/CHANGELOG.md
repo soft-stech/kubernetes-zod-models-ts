@@ -3,6 +3,7 @@
 ## 0.3.1
 
 - Updated Provisioning Operator to v2.7.0-dev.28
+- Defaults generation removed
 
 ## 0.3.0
 

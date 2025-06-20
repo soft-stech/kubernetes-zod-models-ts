@@ -13,7 +13,7 @@
   "types": "index.d.ts",
   "sideEffects": false,
   "scripts": {
-    "build": "tsx scripts/download-crd.ts && crd-generate && tsx scripts/defaults.ts && publish-scripts build",
+    "build": "tsx scripts/download-crd.ts && crd-generate && publish-scripts build",
     "prepack": "publish-scripts prepack",
     "generate": "crd-generate"
   },
@@ -53,7 +53,8 @@
   },
   "crd-generate": {
     "input": [
-      "./src/crds/crds.yaml"
+      "./src/crds/crds.yaml",
+      "./crds/cattle.io/clusters.provisioning.cattle.io.yaml"
     ],
     "output": "./gen"
   },

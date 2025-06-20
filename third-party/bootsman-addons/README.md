@@ -33,3 +33,11 @@ const result = IBillingPluginServerSchema.safeParse(billingPluginServerBase);
 
 console.log({ result });
 ```
+
+## Rancher cattle.io
+
+For additional rancher schema generation
+
+```bash
+kubectl get crd clusters.provisioning.cattle.io -o yaml | yq eval 'del(.status, .metadata.creationTimestamp, .metadata.resourceVersion, .metadata.uid, .metadata.generation)' > crds/cattle.io/clusters.provisioning.cattle.io.yaml
+```
