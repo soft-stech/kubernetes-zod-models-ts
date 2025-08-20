@@ -1,5 +1,11 @@
 # @kubernetes-models/apimachinery
 
+## 1.4.0
+
+### Minor Changes
+
+- Kubernetes 1.31 support
+
 ## 1.3.2
 
 ### Patch Changes

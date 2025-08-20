@@ -15,7 +15,7 @@ type Document = OpenAPIV2.Document<any>;
  */
 const VERSIONS = [
   // Latest version
-  "1.30.0"
+  "1.31.0"
 ];
 
 async function fetchSpec(): Promise<Document> {

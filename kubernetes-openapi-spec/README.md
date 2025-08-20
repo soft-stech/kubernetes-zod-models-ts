@@ -1,3 +1,15 @@
+### Подготовка json для новой версии куба.
+
+0. Внутри папки kubernetes-openapi-spec. Версию поменять на ту которая нужна
+
+1. Устанавливаем go install sigs.k8s.io/controller-runtime/tools/setup-envtest@latest
+
+2. Запускаем setup-envtest use 1.31.x --bin-dir ./bin или ~/go/bin/setup-envtest use 1.31.x --bin-dir ./bin если не нашелся в PATH
+
+3. KUBEBUILDER_ASSETS=./bin/k8s/1.31.0-darwin-arm64 go run . -output ./openapi/1.31.0.json
+
+То что ниже уже устарело. См https://github.com/kubernetes-sigs/kubebuilder/discussions/4082
+
 # Kubernetes OpenAPI Spec
 
 This repository contains OpenAPI spec JSON files for Kubernetes API.

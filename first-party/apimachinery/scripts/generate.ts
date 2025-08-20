@@ -9,7 +9,7 @@ import { trimPrefix } from "@soft-stech/string-util";
 type Document = OpenAPIV2.Document<any>;
 
 // The following version should match the latest version in `first-part/kubernetes-models/scripts/build.ts`.
-const VERSION = "1.30.0";
+const VERSION = "1.31.0";
 
 async function fetchSpec(): Promise<Document> {
   return JSON.parse(

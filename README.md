@@ -119,10 +119,9 @@ iPodSchema.parse(pod);
 - [@kubernetes-models/read-input](utils/read-input) - Read input from file, URL or stdin.
 - [@kubernetes-models/string-util](utils/string-util) - Utility functions for strings.
 
-### Kubernetes vertsion update
+### Kubernetes version update
 
-Update the desired version in Makefile from kubernetes-openapi-spec folder
-and than run make all. After that update the versions in first-party/apimachinery and first-party/kubernetes-models generate scripts accordingly.
+Read README.md in kubernetes-openapi-spec folder first and generate new json file. After that update the versions in first-party/apimachinery and first-party/kubernetes-models generate scripts accordingly.
 
 ## License
 

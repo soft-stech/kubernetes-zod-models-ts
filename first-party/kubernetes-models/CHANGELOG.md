@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.6.0
+
+### Minor Changes
+
+- Kubernetes 1.31 support
+
 ## 4.5.0
 
 ### Minor Changes
