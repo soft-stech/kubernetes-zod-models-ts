@@ -45,6 +45,6 @@
     "lodash": "^4.17.21",
     "openapi-types": "^12.0.2",
     "ts-node": "^10.9.1",
-    "typescript": "^4.8.4"
+    "typescript": "5.8.3"
   }
 }

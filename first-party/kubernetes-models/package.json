@@ -33,7 +33,7 @@
     "@soft-stech/apimachinery": "workspace:^",
     "@soft-stech/base": "workspace:^",
     "@soft-stech/validate": "workspace:^",
-    "ts-to-zod": "^3.8.3",
+    "ts-to-zod": "4.0.1",
     "tslib": "^2.4.0",
     "zod": "4.1.11"
   },
@@ -45,7 +45,7 @@
     "openapi-types": "^12.0.2",
     "ts-node": "^10.9.1",
     "tsc-multi": "^0.6.1",
-    "typescript": "^4.8.4",
+    "typescript": "5.8.3",
     "vitest": "^0.29.8"
   }
 }

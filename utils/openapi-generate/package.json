@@ -45,7 +45,7 @@
     "@soft-stech/string-util": "workspace:^",
     "case": "^1.6.3",
     "lodash": "^4.17.21",
-    "ts-to-zod": "^3.8.3",
+    "ts-to-zod": "4.0.1",
     "tslib": "^2.4.0",
     "yargs": "^17.6.0",
     "zod": "4.1.11"
@@ -54,6 +54,6 @@
     "@types/lodash": "^4.14.186",
     "@types/yargs": "^17.0.13",
     "tsc-multi": "^0.6.1",
-    "typescript": "^4.8.4"
+    "typescript": "5.8.3"
   }
 }

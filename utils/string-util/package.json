@@ -39,6 +39,6 @@
   },
   "devDependencies": {
     "tsc-multi": "^0.6.1",
-    "typescript": "^4.8.4"
+    "typescript": "5.8.3"
   }
 }
