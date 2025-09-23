@@ -14,7 +14,7 @@
   "types": "index.d.ts",
   "sideEffects": false,
   "scripts": {
-    "build": "ts-node scripts/download-crd.ts && crd-generate && publish-scripts build",
+    "build": "tsx scripts/download-crd.ts && crd-generate && publish-scripts build",
     "prepack": "publish-scripts prepack"
   },
   "publishConfig": {
@@ -47,7 +47,7 @@
     "jszip": "^3.10.1",
     "make-fetch-happen": "^10.2.1",
     "stream-to-promise": "^3.0.0",
-    "ts-node": "^10.9.1",
+    "tsx": "^4.19.3",
     "typescript": "5.8.3",
     "vitest": "^0.29.8"
   },

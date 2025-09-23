@@ -14,7 +14,7 @@
   "types": "index.d.ts",
   "sideEffects": false,
   "scripts": {
-    "build": "ts-node scripts/download-crd.ts && crd-generate && publish-scripts build",
+    "build": "tsx scripts/download-crd.ts && crd-generate && publish-scripts build",
     "prepack": "publish-scripts prepack"
   },
   "publishConfig": {
@@ -43,7 +43,7 @@
     "@types/js-yaml": "^4.0.5",
     "@types/node": "^18.7.23",
     "js-yaml": "^4.1.0",
-    "ts-node": "^10.9.1",
+    "tsx": "^4.19.3",
     "typescript": "5.8.3",
     "vitest": "^0.29.8"
   },

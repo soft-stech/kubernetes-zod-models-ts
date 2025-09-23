@@ -17,7 +17,7 @@
     "fs-extra": "^10.1.0",
     "ignore": "^5.2.0",
     "tslib": "^2.4.0",
-    "tsc-multi": "^0.6.1",
+    "tsc-multi": "1.1.0",
     "typescript": "5.8.3",
     "yargs": "^17.6.0"
   },

@@ -105,6 +105,7 @@ function _generateInterface(
 
             // skip defaults if they are objects
             // TODO default objects (records)
+            // zod doesn't support int64 format
             const options = {
               ...(prop.default && typeof prop.default !== "object"
                 ? { [`default ${JSON.stringify(prop.default)}`]: true }
@@ -113,7 +114,8 @@ function _generateInterface(
               ...(prop.maxLength && { [`maxLength ${prop.maxLength}`]: true }),
               ...(prop.minimum && { [`minimum ${prop.minimum}`]: true }),
               ...(prop.maximum && { [`maximum ${prop.maximum}`]: true }),
-              ...(prop.format && { [`format ${prop.format}`]: true }),
+              ...(prop.format &&
+                prop.format !== "int64" && { [`format ${prop.format}`]: true }),
               ...pattern,
               ...schema
             };
