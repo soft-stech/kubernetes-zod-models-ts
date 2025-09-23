@@ -87,8 +87,8 @@ importers:
         specifier: ^17.6.0
         version: 17.6.0
       zod:
-        specifier: 3.24.2
-        version: 3.24.2
+        specifier: 4.1.11
+        version: 4.1.11
 
   core/base:
     dependencies:
@@ -102,8 +102,8 @@ importers:
         specifier: ^2.4.0
         version: 2.6.2
       zod:
-        specifier: 3.24.2
-        version: 3.24.2
+        specifier: 4.1.11
+        version: 4.1.11
     devDependencies:
       tsc-multi:
         specifier: ^0.6.1
@@ -202,8 +202,8 @@ importers:
         specifier: ^2.4.0
         version: 2.6.2
       zod:
-        specifier: 3.24.2
-        version: 3.24.2
+        specifier: 4.1.11
+        version: 4.1.11
     devDependencies:
       '@soft-stech/openapi-generate':
         specifier: workspace:^
@@ -350,8 +350,8 @@ importers:
         specifier: ^2.4.0
         version: 2.6.2
       zod:
-        specifier: 3.24.2
-        version: 3.24.2
+        specifier: 4.1.11
+        version: 4.1.11
     devDependencies:
       '@soft-stech/crd-generate':
         specifier: workspace:^
@@ -1327,8 +1327,8 @@ importers:
         specifier: ^17.6.0
         version: 17.6.0
       zod:
-        specifier: ^3.23.6
-        version: 3.23.6
+        specifier: 4.1.11
+        version: 4.1.11
     devDependencies:
       '@types/lodash':
         specifier: ^4.14.186
@@ -1404,8 +1404,8 @@ importers:
         specifier: ^17.6.0
         version: 17.6.0
       zod:
-        specifier: 3.24.2
-        version: 3.24.2
+        specifier: 4.1.11
+        version: 4.1.11
     devDependencies:
       '@types/lodash':
         specifier: ^4.14.186
@@ -4431,11 +4431,11 @@ packages:
     resolution: {integrity: sha512-9bnSc/HEW2uRy67wc+T8UwauLuPJVn28jb+GtJY16iiKWyvmYJRXVT4UamsAEGQfPohgr2q4Tq0sQbQlxTfi1g==}
     engines: {node: '>=12.20'}
 
-  zod@3.23.6:
-    resolution: {integrity: sha512-RTHJlZhsRbuA8Hmp/iNL7jnfc4nZishjsanDAfEY1QpDQZCahUp3xDzl+zfweE9BklxMUcgBgS1b7Lvie/ZVwA==}
-
   zod@3.24.2:
     resolution: {integrity: sha512-lY7CDW43ECgW9u1TcT3IoXHflywfVqDYze4waEz812jR/bZ8FHDsl7pFQoSZTz5N+2NqRXs8GBwnAwo3ZNxqhQ==}
+
+  zod@4.1.11:
+    resolution: {integrity: sha512-WPsqwxITS2tzx1bzhIKsEs19ABD5vmCVa4xBo2tq/SrV4RNZtfws1EnCWQXM6yh8bD08a1idvkB5MZSBiZsjwg==}
 
 snapshots:
 
@@ -7609,6 +7609,6 @@ snapshots:
 
   yocto-queue@1.0.0: {}
 
-  zod@3.23.6: {}
-
   zod@3.24.2: {}
+
+  zod@4.1.11: {}

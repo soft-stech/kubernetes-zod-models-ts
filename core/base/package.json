@@ -38,7 +38,7 @@
     "@soft-stech/validate": "workspace:^",
     "is-plain-object": "^5.0.0",
     "tslib": "^2.4.0",
-    "zod": "3.24.2"
+    "zod": "4.1.11"
   },
   "devDependencies": {
     "tsc-multi": "^0.6.1",
