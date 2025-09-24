@@ -1,5 +1,11 @@
 # @kubernetes-models/apimachinery
 
+## 1.5.0
+
+### Minor Changes
+
+- updated zod version
+
 ## 1.4.0
 
 ### Minor Changes

@@ -1,5 +1,12 @@
 # @kubernetes-models/victoria-metrics-operator
 
+## 2.4.2
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @soft-stech/apimachinery@1.5.0
+
 ## 2.4.1
 
 ### Patch Changes

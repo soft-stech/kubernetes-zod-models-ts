@@ -1,5 +1,12 @@
 # @kubernetes-models/grafana-agent-operator
 
+## 2.2.5
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @soft-stech/apimachinery@1.5.0
+
 ## 2.2.4
 
 ### Patch Changes

@@ -1,6 +1,6 @@
 {
   "name": "@soft-stech/gateway-api",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "description": "Gateway API models",
   "repository": {
     "type": "git",

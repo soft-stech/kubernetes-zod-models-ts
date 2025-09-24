@@ -1,5 +1,16 @@
 # Change Log
 
+## 4.7.0
+
+### Minor Changes
+
+- updated zod version
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @soft-stech/apimachinery@1.5.0
+
 ## 4.6.0
 
 ### Minor Changes

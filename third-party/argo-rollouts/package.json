@@ -1,6 +1,6 @@
 {
   "name": "@soft-stech/argo-rollouts",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "description": "Argo Rollouts models",
   "repository": {
     "type": "git",

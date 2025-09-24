@@ -1,6 +1,6 @@
 {
   "name": "@soft-stech/external-secrets",
-  "version": "0.4.2",
+  "version": "0.4.3",
   "description": "External secrets models",
   "repository": {
     "type": "git",

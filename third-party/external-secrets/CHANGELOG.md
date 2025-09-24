@@ -1,5 +1,12 @@
 # @kubernetes-models/external-secrets
 
+## 0.4.3
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @soft-stech/apimachinery@1.5.0
+
 ## 0.4.2
 
 ### Patch Changes

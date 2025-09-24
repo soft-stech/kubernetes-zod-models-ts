@@ -1,5 +1,12 @@
 # @kubernetes-models/shipwright
 
+## 0.2.2
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @soft-stech/apimachinery@1.5.0
+
 ## 0.2.1
 
 ### Patch Changes

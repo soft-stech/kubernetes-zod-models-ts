@@ -1,5 +1,12 @@
 # @kubernetes-models/rabbitmq-messaging-topology-operator
 
+## 0.2.5
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @soft-stech/apimachinery@1.5.0
+
 ## 0.2.4
 
 ### Patch Changes
