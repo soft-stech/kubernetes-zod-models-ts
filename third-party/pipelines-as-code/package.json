@@ -1,6 +1,6 @@
 {
   "name": "@soft-stech/pipelines-as-code",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Pipelines-as-Code models",
   "repository": {
     "type": "git",

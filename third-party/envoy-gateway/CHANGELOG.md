@@ -1,5 +1,14 @@
 # @kubernetes-models/envoy-gateway
 
+## 0.2.3
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @soft-stech/apimachinery@2.0.0
+  - @soft-stech/validate@4.0.0
+  - @soft-stech/base@5.0.0
+
 ## 0.2.2
 
 ### Patch Changes

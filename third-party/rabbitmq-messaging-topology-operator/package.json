@@ -1,6 +1,6 @@
 {
   "name": "@soft-stech/rabbitmq-messaging-topology-operator",
-  "version": "0.2.5",
+  "version": "0.2.6",
   "description": "The operator allow developers to create and manage RabbitMQ messaging topologies within a RabbitMQ cluster using a declarative Kubernetes API",
   "repository": {
     "type": "git",

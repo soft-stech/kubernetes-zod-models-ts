@@ -1,6 +1,6 @@
 {
   "name": "@soft-stech/grafana-agent-operator",
-  "version": "2.2.5",
+  "version": "2.2.6",
   "description": "Grafana agent operator models",
   "repository": {
     "type": "git",

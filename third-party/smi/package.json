@@ -1,6 +1,6 @@
 {
   "name": "@soft-stech/smi",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Service Mesh Interface (SMI) models",
   "repository": {
     "type": "git",

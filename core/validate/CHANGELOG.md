@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.0.0
+
+### Major Changes
+
+- zod4 update
+
 ## 3.1.1
 
 ### Patch Changes

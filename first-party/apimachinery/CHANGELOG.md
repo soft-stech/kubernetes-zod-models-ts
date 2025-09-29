@@ -1,5 +1,17 @@
 # @kubernetes-models/apimachinery
 
+## 2.0.0
+
+### Major Changes
+
+- zod4 update
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @soft-stech/validate@4.0.0
+  - @soft-stech/base@5.0.0
+
 ## 1.5.0
 
 ### Minor Changes

@@ -1,5 +1,16 @@
 # Change Log
 
+## 5.0.0
+
+### Major Changes
+
+- zod4 update
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @soft-stech/validate@4.0.0
+
 ## 4.0.3
 
 ### Patch Changes

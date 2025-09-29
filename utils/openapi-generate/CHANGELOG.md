@@ -1,5 +1,14 @@
 # Change Log
 
+## 4.1.4
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @soft-stech/string-util@4.0.0
+  - @soft-stech/read-input@4.0.0
+  - @soft-stech/generate@3.0.0
+
 ## 4.1.3
 
 ### Patch Changes

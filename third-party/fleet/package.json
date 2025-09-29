@@ -1,6 +1,6 @@
 {
   "name": "@soft-stech/fleet",
-  "version": "1.0.4",
+  "version": "2.0.0",
   "description": "Rancher Fleet CRD",
   "repository": {
     "type": "git",

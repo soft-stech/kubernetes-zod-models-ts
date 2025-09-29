@@ -1,6 +1,6 @@
 {
   "name": "@soft-stech/grafana-operator",
-  "version": "2.3.2",
+  "version": "2.3.3",
   "description": "Grafana operator models",
   "repository": {
     "type": "git",
