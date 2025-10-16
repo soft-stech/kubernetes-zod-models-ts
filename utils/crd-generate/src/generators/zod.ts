@@ -6,10 +6,10 @@ import {
   getAPIVersion,
   GroupVersionKind,
   Import,
-  OutputFile,
-  transformSchema
+  OutputFile
 } from "@soft-stech/generate";
 import { formatComment } from "@soft-stech/string-util";
+import * as prettier from "prettier";
 import { generate } from "ts-to-zod";
 
 function getFieldType(key: string[]): string | undefined {
@@ -18,10 +18,10 @@ function getFieldType(key: string[]): string | undefined {
   }
 }
 
-function generateDefinition(
+async function generateDefinition(
   gvk: GroupVersionKind,
   def: Definition
-): OutputFile {
+): Promise<OutputFile> {
   const apiVersion = getAPIVersion(gvk);
   const className = gvk.kind;
   const interfaceName = `I${className}`;
@@ -104,11 +104,7 @@ function generateDefinition(
     });
   }
 
-  const schema = transformSchema(def.schema);
-
   const tsContent = `${generateImports(imports)}
- const schemaId = ${JSON.stringify(def.schemaId)};
-const schema = ${JSON.stringify(schema, null, "  ")};
 
 ${comment}export interface ${interfaceName} ${interfaceContent}
  `;
@@ -127,11 +123,16 @@ ${comment}export interface ${interfaceName} ${interfaceContent}
 
   const content = `${zodSchema}`;
   console.log("generating zod schema for", def.schemaId);
+
+  const formattedContent = await prettier.format(content, {
+    semi: true,
+    parser: "typescript",
+    trailingComma: "none"
+  });
+
   return {
     path: `${apiVersion}/${className}.schema.ts`,
-    content: `
-    ${content}
-`
+    content: formattedContent
   };
 }
 
@@ -142,7 +143,7 @@ const generateDefinitions: Generator = async (definitions) => {
     const gvks = def.gvk;
 
     if (gvks && gvks.length) {
-      output.push(generateDefinition(gvks[0], def));
+      output.push(await generateDefinition(gvks[0], def));
     }
   }
 

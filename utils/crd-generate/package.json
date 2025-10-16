@@ -44,6 +44,7 @@
     "@soft-stech/read-input": "workspace:^",
     "@soft-stech/string-util": "workspace:^",
     "lodash": "^4.17.21",
+    "prettier": "^3.2.5",
     "tslib": "^2.4.0",
     "yaml": "^2.2.2",
     "yargs": "^17.6.0",

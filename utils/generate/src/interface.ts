@@ -110,14 +110,26 @@ function _generateInterface(
               ...(prop.default && typeof prop.default !== "object"
                 ? { [`default ${JSON.stringify(prop.default)}`]: true }
                 : {}),
-              ...(prop.minLength && { [`minLength ${prop.minLength}`]: true }),
-              ...(prop.maxLength && { [`maxLength ${prop.maxLength}`]: true }),
+              ...(prop.minLength && {
+                [`minLength ${prop.minLength}`]: true
+              }),
+              ...(prop.maxLength && {
+                [`maxLength ${prop.maxLength}`]: true
+              }),
               ...(prop.minimum && { [`minimum ${prop.minimum}`]: true }),
               ...(prop.maximum && { [`maximum ${prop.maximum}`]: true }),
               ...(prop.format &&
-                prop.format !== "int64" && { [`format ${prop.format}`]: true }),
+                prop.format !== "int64" && {
+                  [`format ${prop.format}`]: true
+                }),
               ...pattern,
-              ...schema
+              ...{
+                ...schema,
+                ...(prop["x-kubernetes-validations"] && {
+                  [`schema .meta({"x-kubernetes-validations": ${JSON.stringify(prop["x-kubernetes-validations"])}})`]:
+                    true
+                })
+              }
             };
 
             if (prop.description || Object.keys(options).length) {
