@@ -1,5 +1,16 @@
 # Change Log
 
+## 5.1.0
+
+### Minor Changes
+
+- x-kubernetes-validations (CEL) support.
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @soft-stech/validate@4.1.0
+
 ## 5.0.0
 
 ### Major Changes

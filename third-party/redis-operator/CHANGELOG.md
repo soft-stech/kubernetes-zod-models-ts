@@ -1,5 +1,18 @@
 # @kubernetes-models/redis-operator
 
+## 0.3.0
+
+### Minor Changes
+
+- x-kubernetes-validations (CEL) support.
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @soft-stech/apimachinery@2.1.0
+  - @soft-stech/validate@4.1.0
+  - @soft-stech/base@5.1.0
+
 ## 0.2.6
 
 ### Patch Changes

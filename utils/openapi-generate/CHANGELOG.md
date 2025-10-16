@@ -1,5 +1,18 @@
 # Change Log
 
+## 4.2.0
+
+### Minor Changes
+
+- x-kubernetes-validations (CEL) support.
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @soft-stech/generate@4.0.0
+  - @soft-stech/string-util@4.1.0
+  - @soft-stech/read-input@4.1.0
+
 ## 4.1.4
 
 ### Patch Changes

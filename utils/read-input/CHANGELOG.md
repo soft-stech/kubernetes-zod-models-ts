@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.1.0
+
+### Minor Changes
+
+- x-kubernetes-validations (CEL) support.
+
 ## 4.0.0
 
 ### Major Changes

@@ -1,6 +1,6 @@
 {
   "name": "@soft-stech/envoy-gateway",
-  "version": "0.2.3",
+  "version": "0.3.0",
   "description": "Envoy Gateway models",
   "repository": {
     "type": "git",

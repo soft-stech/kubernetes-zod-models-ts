@@ -1,6 +1,6 @@
 {
   "name": "@soft-stech/generate",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "description": "Type declarations and utilities for Kubernetes model generation.",
   "repository": {
     "type": "git",
