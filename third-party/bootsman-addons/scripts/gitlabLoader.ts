@@ -4,7 +4,7 @@ import { consola } from "consola";
 import yaml from "js-yaml";
 
 // Describes crds + defaults snapshot
-const REF = "v2.7.0-dev.28";
+const REF = "v3.0.0-rc.64";
 const BOOTSMAN_VERSION = "v99.9.9-dev";
 
 type Config = {
