@@ -127,7 +127,7 @@ async function fetchDirectory(
 }
 
 // async function fetchReleases(config) {
-//   const releasesPath = "internal/provisioning/embedded/data/releases";
+//   const releasesPath = "internal/embedded/data/releases";
 //   const releases = await fetchDirectory(config, releasesPath);
 
 //   return releases
@@ -211,7 +211,7 @@ async function getAllFiles(config: Config): Promise<void> {
   const addonFiles =
     (await fetchDirectory(
       config,
-      `internal/provisioning/embedded/data/releases/${BOOTSMAN_VERSION}/addons`
+      `internal/embedded/data/releases/${BOOTSMAN_VERSION}/addons`
     )) || [];
   consola.success("Аддоны загружены");
 
