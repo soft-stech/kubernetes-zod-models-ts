@@ -1,5 +1,12 @@
 # @soft-stech/fleet
 
+## 2.1.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @soft-stech/apimachinery@2.2.0
+
 ## 2.1.0
 
 ### Minor Changes

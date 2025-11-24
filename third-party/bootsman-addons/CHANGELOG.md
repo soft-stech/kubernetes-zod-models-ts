@@ -1,5 +1,12 @@
 # @soft-stech/bootsman-addons
 
+## 2.0.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @soft-stech/apimachinery@2.2.0
+
 ## 2.0.0
 
 ### Major Changes

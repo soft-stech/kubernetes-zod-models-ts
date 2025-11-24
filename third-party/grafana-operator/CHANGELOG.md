@@ -1,5 +1,12 @@
 # @kubernetes-models/grafana-operator
 
+## 2.4.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @soft-stech/apimachinery@2.2.0
+
 ## 2.4.0
 
 ### Minor Changes

@@ -1,5 +1,12 @@
 # Change Log
 
+## 5.1.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @soft-stech/apimachinery@2.2.0
+
 ## 5.1.0
 
 ### Minor Changes

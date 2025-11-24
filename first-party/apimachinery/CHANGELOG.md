@@ -1,5 +1,11 @@
 # @kubernetes-models/apimachinery
 
+## 2.2.0
+
+### Minor Changes
+
+- Kubernetes 1.33 support
+
 ## 2.1.0
 
 ### Minor Changes
