@@ -4,8 +4,7 @@ import { consola } from "consola";
 import yaml from "js-yaml";
 
 // Describes crds + defaults snapshot
-const REF = "v3.0.0-rc.64";
-const BOOTSMAN_VERSION = "v99.9.9-dev";
+const REF = "v4.0.0-rbpo.9";
 
 type Config = {
   crdsDir: string;
@@ -207,28 +206,6 @@ async function getAllFiles(config: Config): Promise<void> {
   );
   consola.success("CRD файлы сохранены");
 
-  consola.start("Загрузка аддонов");
-  const addonFiles =
-    (await fetchDirectory(
-      config,
-      `internal/embedded/data/releases/${BOOTSMAN_VERSION}/addons`
-    )) || [];
-  consola.success("Аддоны загружены");
-
-  consola.start("Сохранение аддонов файлов");
-  for (const { path: filePath } of addonFiles) {
-    const targetPath = path.join(config.defaultsDir, path.basename(filePath));
-    const content = await getFile(config, filePath);
-    fs.mkdirSync(path.dirname(targetPath), { recursive: true });
-    fs.writeFileSync(targetPath, content);
-  }
-  mergeYamlFiles(DEFAULTS_PATH, DEFAULTS_PATH + "/defaults.yaml", (content) => {
-    const documents = yaml.loadAll(content);
-
-    // Берем последний документ
-    return documents[documents.length - 1];
-  });
-  consola.success("Аддоны сохранены");
   consola.success("Загрузка файлов завершена");
 }
 
