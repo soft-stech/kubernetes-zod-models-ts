@@ -4,7 +4,7 @@ import { consola } from "consola";
 import yaml from "js-yaml";
 
 // Describes crds + defaults snapshot
-const REF = "v4.0.0-rbpo.9";
+const REF = "v3.3.0";
 
 type Config = {
   crdsDir: string;
