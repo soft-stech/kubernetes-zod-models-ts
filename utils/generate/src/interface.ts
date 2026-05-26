@@ -35,15 +35,21 @@ function _generateInterface(
   }
 
   if (schema.not) {
-    return `Exclude<${_generateInterface(
-      omit(schema, ["not"]),
-      options,
-      parentKeys
-    )}, ${_generateInterface(
+    const excludeType = _generateInterface(
       { ...omit(schema, ["not"]), ...schema.not },
       options,
       parentKeys
-    )}>`;
+    );
+
+    if (excludeType === `"IPAddress"`) {
+      // Fix for gateway api spec.addresses. Schema is not generatting correctly with | {"type"?: Exclude<any, "IPAddress">;
+    } else {
+      return `Exclude<${_generateInterface(
+        omit(schema, ["not"]),
+        options,
+        parentKeys
+      )}, ${excludeType}>`;
+    }
   }
 
   const compileRegExp = (str: string): RegExp | undefined => {
@@ -54,6 +60,13 @@ function _generateInterface(
       return undefined;
     }
   };
+
+  if (
+    !schema.type &&
+    (schema?.format === "ipv4" || schema?.format === "ipv6")
+  ) {
+    schema.type = "string";
+  }
 
   const result = (() => {
     switch (schema.type) {
@@ -126,7 +139,7 @@ function _generateInterface(
               ...{
                 ...schema,
                 ...(prop["x-kubernetes-validations"] && {
-                  [`schema .meta({"x-kubernetes-validations": ${JSON.stringify(prop["x-kubernetes-validations"])}})`]:
+                  [`schema .meta({"x-kubernetes-validations": ${JSON.stringify(prop["x-kubernetes-validations"]).replace(/\*\//g, "*\\/")}})`]:
                     true
                 })
               }

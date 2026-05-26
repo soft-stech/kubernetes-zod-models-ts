@@ -1,5 +1,11 @@
 # @soft-stech/bootsman-addons
 
+## 3.0.0
+
+### Major Changes
+
+- Bootsman ref changed to v4.0.0-rbpo.9
+
 ## 2.0.1
 
 ### Patch Changes

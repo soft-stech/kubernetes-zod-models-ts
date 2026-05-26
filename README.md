@@ -4,6 +4,8 @@
 
 Kubernetes models in TypeScript.
 
+Kubernetes adds models in TypeScript.
+
 ## Installation
 
 Install with npm.
