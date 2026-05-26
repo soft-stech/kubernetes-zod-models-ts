@@ -2,7 +2,6 @@ import { describe, it, expect } from "vitest";
 import { Pod } from "../gen/v1/Pod";
 import { Service } from "../gen/v1/Service";
 import { ConfigMap } from "../gen/v1/ConfigMap";
-import { JSONSchemaProps as JSONSchemaPropsV1Beta1 } from "../gen/apiextensions.k8s.io/v1beta1/JSONSchemaProps";
 import { JSONSchemaProps as JSONSchemaPropsV1 } from "../gen/apiextensions.k8s.io/v1/JSONSchemaProps";
 import { PersistentVolumeClaim } from "../gen/v1/PersistentVolumeClaim";
 import { StatefulSetSpec } from "../gen/apps/v1/StatefulSetSpec";
@@ -57,15 +56,6 @@ describe("validate", () => {
       ["array", ["a", "b", "c"]],
       ["object", { a: "b", c: "d" }]
     ])("when type = %s", (_, value) => {
-      it("v1beta1 should pass", () => {
-        const props = new JSONSchemaPropsV1Beta1({
-          default: value
-        });
-
-        props.validate();
-        expect(props.default).toEqual(value);
-      });
-
       it("v1 should pass", () => {
         const props = new JSONSchemaPropsV1({
           default: value
@@ -74,6 +64,14 @@ describe("validate", () => {
         props.validate();
         expect(props.default).toEqual(value);
       });
+    });
+
+    it("oneOf", () => {
+      const props = new JSONSchemaPropsV1({
+        oneOf: [{ type: "string" }, { type: "number" }]
+      });
+
+      expect(() => props.validate()).not.toThrow();
     });
   });
 
@@ -121,7 +119,7 @@ describe("validate", () => {
       it("should fail", () => {
         const pvc = createPVC("foo");
         expect(() => pvc.validate()).toThrow(
-          'data/spec/resources/requests/storage must be number, data/spec/resources/requests/storage must match format "quantity", data/spec/resources/requests/storage must match exactly one schema in oneOf'
+          `data/spec/resources/requests/storage must be number, data/spec/resources/requests/storage must match format "quantity", data/spec/resources/requests/storage must match exactly one schema in oneOf`
         );
       });
     });
@@ -138,6 +136,32 @@ describe("validate", () => {
         });
 
         expect(() => pod.validate()).not.toThrow();
+      });
+    });
+
+    describe("when spec is null", () => {
+      it("should pass", () => {
+        const pod = new Pod({
+          // @ts-expect-error
+          spec: null
+        });
+
+        expect(() => pod.validate()).not.toThrow();
+      });
+    });
+
+    describe("when spec.containers is null", () => {
+      it("should fail", () => {
+        const pod = new Pod({
+          spec: {
+            // @ts-expect-error
+            containers: null
+          }
+        });
+
+        expect(() => pod.validate()).toThrow(
+          "data/spec/containers must be array"
+        );
       });
     });
   });
