@@ -1,0 +1,64 @@
+{
+  "name": "@kubernetes-models/cluster-api",
+  "version": "0.0.0",
+  "type": "module",
+  "description": "Cluster API models",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tommy351/kubernetes-models-ts.git"
+  },
+  "homepage": "https://github.com/tommy351/kubernetes-models-ts/tree/master/third-party/cluster-api",
+  "author": "Tommy Chen <tommy@dcard.cc>",
+  "license": "MIT",
+  "main": "index.js",
+  "module": "index.mjs",
+  "types": "index.d.ts",
+  "sideEffects": false,
+  "scripts": {
+    "build": "crd-generate && publish-scripts build",
+    "prepack": "publish-scripts prepack"
+  },
+  "publishConfig": {
+    "access": "public",
+    "directory": "dist",
+    "linkDirectory": true
+  },
+  "keywords": [
+    "kubernetes",
+    "kubernetes-models",
+    "cluster-api",
+    "capi"
+  ],
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "@soft-stech/apimachinery": "workspace:^",
+    "@soft-stech/base": "workspace:^",
+    "@soft-stech/validate": "workspace:^",
+    "tslib": "^2.4.0"
+  },
+  "devDependencies": {
+    "@soft-stech/crd-generate": "workspace:^",
+    "@soft-stech/publish-scripts": "workspace:^",
+    "vitest": "^0.29.8"
+  },
+  "crd-generate": {
+    "input": [
+      "https://raw.githubusercontent.com/kubernetes-sigs/cluster-api/v1.11.6/config/crd/bases/addons.cluster.x-k8s.io_clusterresourcesetbindings.yaml",
+      "https://raw.githubusercontent.com/kubernetes-sigs/cluster-api/v1.11.6/config/crd/bases/addons.cluster.x-k8s.io_clusterresourcesets.yaml",
+      "https://raw.githubusercontent.com/kubernetes-sigs/cluster-api/v1.11.6/config/crd/bases/cluster.x-k8s.io_clusterclasses.yaml",
+      "https://raw.githubusercontent.com/kubernetes-sigs/cluster-api/v1.11.6/config/crd/bases/cluster.x-k8s.io_clusters.yaml",
+      "https://raw.githubusercontent.com/kubernetes-sigs/cluster-api/v1.11.6/config/crd/bases/cluster.x-k8s.io_machinedeployments.yaml",
+      "https://raw.githubusercontent.com/kubernetes-sigs/cluster-api/v1.11.6/config/crd/bases/cluster.x-k8s.io_machinedrainrules.yaml",
+      "https://raw.githubusercontent.com/kubernetes-sigs/cluster-api/v1.11.6/config/crd/bases/cluster.x-k8s.io_machinehealthchecks.yaml",
+      "https://raw.githubusercontent.com/kubernetes-sigs/cluster-api/v1.11.6/config/crd/bases/cluster.x-k8s.io_machinepools.yaml",
+      "https://raw.githubusercontent.com/kubernetes-sigs/cluster-api/v1.11.6/config/crd/bases/cluster.x-k8s.io_machines.yaml",
+      "https://raw.githubusercontent.com/kubernetes-sigs/cluster-api/v1.11.6/config/crd/bases/cluster.x-k8s.io_machinesets.yaml",
+      "https://raw.githubusercontent.com/kubernetes-sigs/cluster-api/v1.11.6/config/crd/bases/ipam.cluster.x-k8s.io_ipaddressclaims.yaml",
+      "https://raw.githubusercontent.com/kubernetes-sigs/cluster-api/v1.11.6/config/crd/bases/ipam.cluster.x-k8s.io_ipaddresses.yaml",
+      "https://raw.githubusercontent.com/kubernetes-sigs/cluster-api/v1.11.6/config/crd/bases/runtime.cluster.x-k8s.io_extensionconfigs.yaml"
+    ],
+    "output": "./gen"
+  }
+}
