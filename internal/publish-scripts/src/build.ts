@@ -66,7 +66,7 @@ async function generateExportMap(
 }
 
 async function compileTS(cwd: string): Promise<void> {
-  const tscMultiBin = join(__dirname, "../node_modules/.bin/tsc-multi");
+  const tscMultiBin = require.resolve("tsc-multi/bin/tsc-multi.js");
   const tscMultiConfig = join(__dirname, "../../../tsc-multi.json");
 
   console.log("Running tsc-multi");

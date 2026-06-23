@@ -1,6 +1,6 @@
 {
-  "name": "@kubernetes-models/cluster-api",
-  "version": "0.0.0",
+  "name": "@soft-stech/cluster-api",
+  "version": "1.0.1",
   "type": "module",
   "description": "Cluster API models",
   "repository": {
